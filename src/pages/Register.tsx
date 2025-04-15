@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Eye, EyeOff, User, Mail, Lock } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import { toast } from "@/components/ui/sonner";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -18,8 +19,15 @@ const Register = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // For now, just store in localStorage. Later we'll integrate with Supabase
+    // Store user data in localStorage
     localStorage.setItem("userData", JSON.stringify(formData));
+    
+    // Show success toast
+    toast.success("Registration Successful!", {
+      description: "Welcome to SymptoCare! You can now log in.",
+    });
+
+    // Navigate to login page
     navigate("/login");
   };
 
