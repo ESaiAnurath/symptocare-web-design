@@ -34,9 +34,16 @@ const Navbar = () => {
                 {item.title}
               </Link>
             ))}
-            <Button variant="default" className="bg-[#9b87f5] hover:bg-[#8b77e5]">
-              Sign In
-            </Button>
+            <Link to="/register">
+              <Button variant="outline" className="mr-2">
+                Sign Up
+              </Button>
+            </Link>
+            <Link to="/login">
+              <Button variant="default" className="bg-[#9b87f5] hover:bg-[#8b77e5]">
+                Log In
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Navigation */}
@@ -58,9 +65,16 @@ const Navbar = () => {
                       {item.title}
                     </Link>
                   ))}
-                  <Button className="w-full bg-[#9b87f5] hover:bg-[#8b77e5]">
-                    Sign In
-                  </Button>
+                  <Link to="/register">
+                    <Button variant="outline" className="w-full mb-2">
+                      Sign Up
+                    </Button>
+                  </Link>
+                  <Link to="/login">
+                    <Button className="w-full bg-[#9b87f5] hover:bg-[#8b77e5]">
+                      Log In
+                    </Button>
+                  </Link>
                 </div>
               </SheetContent>
             </Sheet>
