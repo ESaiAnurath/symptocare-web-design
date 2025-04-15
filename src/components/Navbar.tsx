@@ -1,16 +1,40 @@
 
-import { Link } from 'react-router-dom';
-import { Menu } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Menu, User, Settings, LogOut } from 'lucide-react';
 import { Button } from './ui/button';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
+import { useEffect, useState } from 'react';
+import { toast } from './ui/sonner';
 
 const Navbar = () => {
-  const navItems = [
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Check if user data exists in localStorage
+    const userData = localStorage.getItem('userData');
+    setIsLoggedIn(!!userData);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('userData');
+    setIsLoggedIn(false);
+    toast.success('Logged out successfully');
+    navigate('/');
+  };
+
+  const commonNavItems = [
     { title: 'Home', href: '/' },
     { title: 'Symptom Analyzer', href: '/analyzer' },
     { title: 'Medical Store', href: '/store' },
     { title: 'Find Doctors', href: '/doctors' },
     { title: 'About Us', href: '/about' },
+  ];
+
+  const loggedInNavItems = [
+    { title: 'My Profile', href: '/profile', icon: User },
+    { title: 'Settings', href: '/settings', icon: Settings },
+    { title: 'Logout', onClick: handleLogout, icon: LogOut },
   ];
 
   return (
@@ -25,7 +49,7 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
+            {commonNavItems.map((item) => (
               <Link
                 key={item.title}
                 to={item.href}
@@ -34,16 +58,40 @@ const Navbar = () => {
                 {item.title}
               </Link>
             ))}
-            <Link to="/register">
-              <Button variant="outline" className="mr-2">
-                Sign Up
-              </Button>
-            </Link>
-            <Link to="/login">
-              <Button variant="default" className="bg-[#9b87f5] hover:bg-[#8b77e5]">
-                Log In
-              </Button>
-            </Link>
+            
+            {isLoggedIn ? (
+              <div className="flex items-center space-x-4">
+                {loggedInNavItems.map((item) => (
+                  item.onClick ? (
+                    <Button
+                      key={item.title}
+                      onClick={item.onClick}
+                      variant="ghost"
+                      className="flex items-center gap-2"
+                    >
+                      <item.icon className="h-4 w-4" />
+                      {item.title}
+                    </Button>
+                  ) : (
+                    <Link key={item.title} to={item.href}>
+                      <Button variant="ghost" className="flex items-center gap-2">
+                        <item.icon className="h-4 w-4" />
+                        {item.title}
+                      </Button>
+                    </Link>
+                  )
+                ))}
+              </div>
+            ) : (
+              <div className="flex items-center space-x-4">
+                <Link to="/register">
+                  <Button variant="outline">Sign Up</Button>
+                </Link>
+                <Link to="/login">
+                  <Button className="bg-[#9b87f5] hover:bg-[#8b77e5]">Log In</Button>
+                </Link>
+              </div>
+            )}
           </div>
 
           {/* Mobile Navigation */}
@@ -56,7 +104,7 @@ const Navbar = () => {
               </SheetTrigger>
               <SheetContent>
                 <div className="flex flex-col space-y-4 mt-8">
-                  {navItems.map((item) => (
+                  {commonNavItems.map((item) => (
                     <Link
                       key={item.title}
                       to={item.href}
@@ -65,16 +113,40 @@ const Navbar = () => {
                       {item.title}
                     </Link>
                   ))}
-                  <Link to="/register">
-                    <Button variant="outline" className="w-full mb-2">
-                      Sign Up
-                    </Button>
-                  </Link>
-                  <Link to="/login">
-                    <Button className="w-full bg-[#9b87f5] hover:bg-[#8b77e5]">
-                      Log In
-                    </Button>
-                  </Link>
+                  
+                  {isLoggedIn ? (
+                    <>
+                      {loggedInNavItems.map((item) => (
+                        item.onClick ? (
+                          <Button
+                            key={item.title}
+                            onClick={item.onClick}
+                            variant="ghost"
+                            className="flex items-center justify-start gap-2"
+                          >
+                            <item.icon className="h-4 w-4" />
+                            {item.title}
+                          </Button>
+                        ) : (
+                          <Link key={item.title} to={item.href}>
+                            <Button variant="ghost" className="flex items-center justify-start gap-2 w-full">
+                              <item.icon className="h-4 w-4" />
+                              {item.title}
+                            </Button>
+                          </Link>
+                        )
+                      ))}
+                    </>
+                  ) : (
+                    <>
+                      <Link to="/register">
+                        <Button variant="outline" className="w-full">Sign Up</Button>
+                      </Link>
+                      <Link to="/login">
+                        <Button className="w-full bg-[#9b87f5] hover:bg-[#8b77e5]">Log In</Button>
+                      </Link>
+                    </>
+                  )}
                 </div>
               </SheetContent>
             </Sheet>
