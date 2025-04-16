@@ -1,4 +1,3 @@
-
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, User, Settings, LogOut } from 'lucide-react';
 import { Button } from './ui/button';
@@ -28,7 +27,8 @@ const Navbar = () => {
     { title: 'Symptom Analyzer', href: '/analyzer' },
     { title: 'Medical Store', href: '/store' },
     { title: 'Find Doctors', href: '/doctors' },
-    { title: 'About Us', href: '/about' },
+    { title: 'Services', href: '/services' },
+    { title: 'Insurance', href: '/insurance' },
   ];
 
   const loggedInNavItems = [
