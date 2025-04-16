@@ -9,6 +9,8 @@ import NotFound from "./pages/NotFound";
 import SymptomAnalyzer from "./pages/Analyzer";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Profile from "./pages/Profile";
+import Store from "./pages/Store";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +25,8 @@ const App = () => (
           <Route path="/analyzer" element={<SymptomAnalyzer />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/store" element={<Store />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
