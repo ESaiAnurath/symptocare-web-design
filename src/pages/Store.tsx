@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { Search, Filter, ShoppingCart, Heart, Plus, Minus } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -25,15 +26,17 @@ const medicineCategories = [
   { id: "first-aid", name: "First Aid" },
   { id: "baby", name: "Baby Care" },
   { id: "devices", name: "Medical Devices" },
+  { id: "ayurvedic", name: "Ayurvedic" },
+  { id: "homeopathy", name: "Homeopathy" },
 ];
 
 const medicines = [
   {
     id: "1",
     name: "Paracetamol 500mg",
-    brand: "Calpol",
+    brand: "Crocin",
     category: "otc",
-    price: 5.99,
+    price: 45,
     image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=300",
     description: "For fever and mild to moderate pain",
     prescription: false,
@@ -42,9 +45,9 @@ const medicines = [
   {
     id: "2",
     name: "Amoxicillin 250mg",
-    brand: "Amoxil",
+    brand: "Mox",
     category: "prescription",
-    price: 12.49,
+    price: 120,
     image: "https://images.unsplash.com/photo-1550572017-53a79502c33b?auto=format&fit=crop&q=80&w=300",
     description: "Antibiotic for bacterial infections",
     prescription: true,
@@ -53,9 +56,9 @@ const medicines = [
   {
     id: "3",
     name: "Vitamin D3 1000 IU",
-    brand: "Nature's Way",
+    brand: "Depura",
     category: "vitamins",
-    price: 8.99,
+    price: 195,
     image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&q=80&w=300",
     description: "Daily supplement for bone health",
     prescription: false,
@@ -64,9 +67,9 @@ const medicines = [
   {
     id: "4",
     name: "Digital Thermometer",
-    brand: "Omron",
+    brand: "Dr. Morepen",
     category: "devices",
-    price: 15.99,
+    price: 250,
     image: "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?auto=format&fit=crop&q=80&w=300",
     description: "Accurate temperature measurement",
     prescription: false,
@@ -75,9 +78,9 @@ const medicines = [
   {
     id: "5",
     name: "Elastic Bandage",
-    brand: "Johnson & Johnson",
+    brand: "Dyna",
     category: "first-aid",
-    price: 6.49,
+    price: 80,
     image: "https://images.unsplash.com/photo-1631815587646-b85a1bb027e3?auto=format&fit=crop&q=80&w=300",
     description: "For sprains and muscle support",
     prescription: false,
@@ -86,9 +89,9 @@ const medicines = [
   {
     id: "6",
     name: "Insulin Glargine",
-    brand: "Lantus",
+    brand: "Basalog",
     category: "prescription",
-    price: 89.99,
+    price: 650,
     image: "https://images.unsplash.com/photo-1628771065518-0d82f1938462?auto=format&fit=crop&q=80&w=300",
     description: "Long-acting insulin for diabetes",
     prescription: true,
@@ -97,9 +100,9 @@ const medicines = [
   {
     id: "7",
     name: "Baby Diaper Rash Cream",
-    brand: "Desitin",
+    brand: "Himalaya",
     category: "baby",
-    price: 9.99,
+    price: 145,
     image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=300",
     description: "Soothes and prevents diaper rash",
     prescription: false,
@@ -108,13 +111,35 @@ const medicines = [
   {
     id: "8",
     name: "Hand Sanitizer",
-    brand: "Purell",
+    brand: "Dettol",
     category: "personal",
-    price: 3.99,
+    price: 75,
     image: "https://images.unsplash.com/photo-1605195340000-902c9a50579e?auto=format&fit=crop&q=80&w=300",
     description: "Kills 99.9% of germs",
     prescription: false,
     stock: 250,
+  },
+  {
+    id: "9",
+    name: "Ashwagandha Capsules",
+    brand: "Patanjali",
+    category: "ayurvedic",
+    price: 220,
+    image: "https://images.unsplash.com/photo-1607444291693-3af7c1fb2012?auto=format&fit=crop&q=80&w=300",
+    description: "Herbal supplement for stress relief",
+    prescription: false,
+    stock: 90,
+  },
+  {
+    id: "10",
+    name: "Arnica 30C",
+    brand: "SBL",
+    category: "homeopathy",
+    price: 130,
+    image: "https://images.unsplash.com/photo-1585672850300-e05a24f0cf3f?auto=format&fit=crop&q=80&w=300",
+    description: "Homeopathic remedy for pain relief",
+    prescription: false,
+    stock: 65,
   },
 ];
 
@@ -128,6 +153,7 @@ type CartItem = {
 };
 
 const Store = () => {
+  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -200,6 +226,20 @@ const Store = () => {
       setWishlist([...wishlist, id]);
       toast.success("Added to wishlist");
     }
+  };
+
+  const handleCheckout = () => {
+    // Save cart to localStorage for the payment page
+    localStorage.setItem('currentCart', JSON.stringify({
+      items: cart,
+      subtotal: cartTotal,
+      shipping: 40,
+      total: cartTotal + 40
+    }));
+    
+    // Navigate to a payment page (this would need to be created)
+    toast.success("Redirecting to payment...");
+    navigate('/payment');
   };
 
   const cartTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
@@ -292,7 +332,7 @@ const Store = () => {
                             </CardHeader>
                             <CardContent className="pb-2">
                               <p className="text-sm text-gray-600 mb-2">{medicine.description}</p>
-                              <p className="text-lg font-semibold text-[#9b87f5]">${medicine.price.toFixed(2)}</p>
+                              <p className="text-lg font-semibold text-[#9b87f5]">₹{medicine.price.toFixed(2)}</p>
                               <p className="text-xs text-gray-500 mt-1">
                                 {medicine.stock > 50 ? 'In Stock' : medicine.stock > 10 ? 'Low Stock' : 'Very Low Stock'}
                               </p>
@@ -338,7 +378,7 @@ const Store = () => {
                       <div className="flex-grow">
                         <h3 className="text-sm font-medium">{item.name}</h3>
                         <p className="text-xs text-gray-500">{item.brand}</p>
-                        <p className="text-sm font-semibold mt-1">${item.price.toFixed(2)}</p>
+                        <p className="text-sm font-semibold mt-1">₹{item.price.toFixed(2)}</p>
                         <div className="flex items-center justify-between mt-2">
                           <div className="flex items-center gap-2">
                             <Button
@@ -375,18 +415,21 @@ const Store = () => {
                   <div className="pt-4">
                     <div className="flex justify-between text-sm mb-2">
                       <span>Subtotal</span>
-                      <span>${cartTotal.toFixed(2)}</span>
+                      <span>₹{cartTotal.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-sm mb-2">
                       <span>Shipping</span>
-                      <span>$5.00</span>
+                      <span>₹40.00</span>
                     </div>
                     <div className="flex justify-between font-semibold text-base pt-2 border-t mt-2">
                       <span>Total</span>
-                      <span>${(cartTotal + 5).toFixed(2)}</span>
+                      <span>₹{(cartTotal + 40).toFixed(2)}</span>
                     </div>
                     
-                    <Button className="w-full mt-4 bg-[#9b87f5] hover:bg-[#8b77e5]">
+                    <Button 
+                      className="w-full mt-4 bg-[#9b87f5] hover:bg-[#8b77e5]"
+                      onClick={handleCheckout}
+                    >
                       Checkout
                     </Button>
                   </div>

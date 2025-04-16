@@ -1,9 +1,11 @@
+
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, User, Settings, LogOut } from 'lucide-react';
 import { Button } from './ui/button';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { useEffect, useState } from 'react';
 import { toast } from './ui/sonner';
+import LanguageTranslator from './LanguageTranslator';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -59,43 +61,49 @@ const Navbar = () => {
               </Link>
             ))}
             
-            {isLoggedIn ? (
-              <div className="flex items-center space-x-4">
-                {loggedInNavItems.map((item) => (
-                  item.onClick ? (
-                    <Button
-                      key={item.title}
-                      onClick={item.onClick}
-                      variant="ghost"
-                      className="flex items-center gap-2"
-                    >
-                      <item.icon className="h-4 w-4" />
-                      {item.title}
-                    </Button>
-                  ) : (
-                    <Link key={item.title} to={item.href}>
-                      <Button variant="ghost" className="flex items-center gap-2">
+            <div className="flex items-center space-x-4">
+              <LanguageTranslator />
+              
+              {isLoggedIn ? (
+                <div className="flex items-center space-x-4">
+                  {loggedInNavItems.map((item) => (
+                    item.onClick ? (
+                      <Button
+                        key={item.title}
+                        onClick={item.onClick}
+                        variant="ghost"
+                        className="flex items-center gap-2"
+                      >
                         <item.icon className="h-4 w-4" />
                         {item.title}
                       </Button>
-                    </Link>
-                  )
-                ))}
-              </div>
-            ) : (
-              <div className="flex items-center space-x-4">
-                <Link to="/register">
-                  <Button variant="outline">Sign Up</Button>
-                </Link>
-                <Link to="/login">
-                  <Button className="bg-[#9b87f5] hover:bg-[#8b77e5]">Log In</Button>
-                </Link>
-              </div>
-            )}
+                    ) : (
+                      <Link key={item.title} to={item.href}>
+                        <Button variant="ghost" className="flex items-center gap-2">
+                          <item.icon className="h-4 w-4" />
+                          {item.title}
+                        </Button>
+                      </Link>
+                    )
+                  ))}
+                </div>
+              ) : (
+                <div className="flex items-center space-x-4">
+                  <Link to="/register">
+                    <Button variant="outline">Sign Up</Button>
+                  </Link>
+                  <Link to="/login">
+                    <Button className="bg-[#9b87f5] hover:bg-[#8b77e5]">Log In</Button>
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Mobile Navigation */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center space-x-2">
+            <LanguageTranslator />
+            
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
