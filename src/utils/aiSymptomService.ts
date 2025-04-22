@@ -31,36 +31,36 @@ export const analyzeSymptoms = (symptoms: string): Promise<AnalysisResult> => {
             {
               name: 'Tension Headache',
               probability: 'High',
-              description: 'Pain or discomfort in the head, scalp, or neck, often associated with muscle tightness.',
-              symptoms: ['Dull head pain', 'Pressure around forehead', 'Tender scalp'],
-              precautions: ['Rest in quiet room', 'Stay hydrated', 'Avoid bright lights']
+              description: 'A primary headache condition characterized by mild to moderate pain, often described as a tight band around the head. Common triggers include stress, lack of sleep, or eye strain.',
+              symptoms: ['Dull head pain', 'Pressure around forehead', 'Tender scalp', 'Neck stiffness'],
+              precautions: ['Rest in quiet room', 'Stay hydrated', 'Avoid bright lights', 'Practice stress management']
             },
             { 
               name: 'Migraine', 
               probability: 'Medium',
-              description: 'Intense throbbing pain, usually on one side of the head, often with nausea and sensitivity to light and sound.',
-              symptoms: ['Severe head pain', 'Nausea', 'Sensitivity to light and sound'],
-              precautions: ['Rest in a quiet, dark room', 'Take prescribed medication', 'Avoid bright lights']
+              description: 'A neurological condition causing severe throbbing pain, usually on one side of the head. Often accompanied by sensitivity to light and sound, nausea, and visual disturbances.',
+              symptoms: ['Severe head pain', 'Nausea', 'Sensitivity to light and sound', 'Visual aura'],
+              precautions: ['Rest in a dark, quiet room', 'Take prescribed medication', 'Avoid triggers', 'Stay hydrated']
             },
             { 
-              name: 'Sinusitis', 
+              name: 'Cluster Headache', 
               probability: 'Low',
-              description: 'Inflammation of the sinuses, causing facial pain, headache, and nasal congestion.',
-              symptoms: ['Face pain', 'Headache', 'Nasal congestion'],
-              precautions: ['Use over-the-counter pain relievers', 'Stay hydrated', 'Rest in a quiet room']
+              description: 'Extremely severe headaches occurring in cyclical patterns. Pain is typically centered around one eye and can last from 15 minutes to 3 hours.',
+              symptoms: ['Intense one-sided pain', 'Eye tearing', 'Nasal congestion', 'Restlessness'],
+              precautions: ['Seek immediate medical attention', 'Use prescribed treatments', 'Avoid alcohol during clusters']
             },
           ],
           specialistRecommendation: {
             specialty: 'neurology',
-            description: 'A neurologist specializes in diagnosing and treating disorders of the nervous system, including headaches.',
-            urgency: 'Routine',
+            description: 'A neurologist specializes in diagnosing and treating disorders of the nervous system, including complex headache conditions. They can perform detailed neurological examinations and recommend appropriate treatment plans.',
+            urgency: 'Soon',
             virtualConsultAvailable: true,
             estimatedCost: '₹800 - ₹1500'
           },
           additionalRecommendations: {
-            lifestyle: ['Maintain regular sleep schedule', 'Practice stress management', 'Stay hydrated'],
-            immediateSteps: ['Take prescribed medication', 'Rest in a quiet, dark room'],
-            followUp: 'Schedule a follow-up in 2 weeks if symptoms persist'
+            lifestyle: ['Maintain regular sleep schedule', 'Practice stress management', 'Stay hydrated', 'Exercise regularly'],
+            immediateSteps: ['Take prescribed medication', 'Rest in a quiet, dark room', 'Apply cold/hot compress'],
+            followUp: 'Schedule a follow-up in 2 weeks if symptoms persist or worsen'
           }
         });
       } 

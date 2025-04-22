@@ -1,4 +1,3 @@
-
 import { Search, Brain, Activity, Clock, CalendarClock, Video } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -12,18 +11,18 @@ import Navbar from "@/components/Navbar";
 import { analyzeSymptoms } from "@/utils/aiSymptomService";
 
 const commonSymptoms = [
-  "सिरदर्द (Headache)",
-  "बुखार (Fever)",
-  "खांसी (Cough)",
-  "थकान (Fatigue)",
-  "मतली (Nausea)",
-  "गले में खराश (Sore throat)",
-  "शरीर में दर्द (Body ache)",
-  "चक्कर आना (Dizziness)",
-  "पेट दर्द (Stomach pain)",
-  "सांस लेने में तकलीफ (Breathing difficulty)",
-  "त्वचा पर चकत्ते (Skin rash)",
-  "जोड़ों में दर्द (Joint pain)",
+  "Headache",
+  "Fever",
+  "Cough",
+  "Fatigue",
+  "Nausea",
+  "Sore throat",
+  "Body ache",
+  "Dizziness",
+  "Stomach pain",
+  "Breathing difficulty",
+  "Skin rash",
+  "Joint pain",
 ];
 
 const SymptomAnalyzer = () => {
@@ -37,8 +36,8 @@ const SymptomAnalyzer = () => {
   const handleAnalyze = async () => {
     if (!symptoms.trim()) {
       toast({
-        title: "लक्षण दर्ज करें",
-        description: "कृपया अपने लक्षणों का विवरण दें",
+        title: "Enter Symptoms",
+        description: "Please describe your symptoms",
         variant: "destructive",
       });
       return;
@@ -50,13 +49,13 @@ const SymptomAnalyzer = () => {
       setAnalysisResult(result);
       setActiveTab("results");
       toast({
-        title: "विश्लेषण पूरा हुआ",
-        description: "आपके लक्षणों का विश्लेषण सफलतापूर्वक पूरा हुआ",
+        title: "Analysis Complete",
+        description: "Your symptoms have been successfully analyzed",
       });
     } catch (error) {
       toast({
-        title: "विश्लेषण में त्रुटि",
-        description: "क्षमा करें, लक्षणों का विश्लेषण करते समय कोई त्रुटि हुई",
+        title: "Analysis Error",
+        description: "Sorry, an error occurred while analyzing symptoms",
         variant: "destructive",
       });
     } finally {
@@ -66,8 +65,8 @@ const SymptomAnalyzer = () => {
 
   const bookAppointment = (specialty: string) => {
     toast({
-      title: "अपॉइंटमेंट बुक की जा रही है",
-      description: `आपको ${specialty} विशेषज्ञ के पास भेजा जा रहा है`,
+      title: "Appointment Booking",
+      description: `Your appointment has been booked with ${specialty} specialist`,
     });
     navigate(`/doctors/${specialty}`);
   };
@@ -79,34 +78,31 @@ const SymptomAnalyzer = () => {
         <div className="max-w-5xl mx-auto space-y-8">
           <div className="text-center space-y-4">
             <h1 className="text-4xl font-bold text-gray-900 font-poppins">
-              AI लक्षण विश्लेषक
-              <span className="block text-xl font-normal text-gray-600 mt-2">
-                AI Symptom Analyzer
-              </span>
+              AI Symptom Analyzer
             </h1>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              अपने लक्षणों का वर्णन करें और AI-आधारित विश्लेषण प्राप्त करें। हमारा AI आपके लक्षणों के आधार पर संभावित स्थितियों का सुझाव देगा और उचित विशेषज्ञ की सिफारिश करेगा।
+              Describe your symptoms and receive AI-powered analysis. Our advanced AI will suggest possible conditions and recommend appropriate specialists.
             </p>
           </div>
 
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid grid-cols-2 mb-8 w-full max-w-md mx-auto">
-              <TabsTrigger value="analysis">लक्षण दर्ज करें</TabsTrigger>
-              <TabsTrigger value="results" disabled={!analysisResult}>परिणाम</TabsTrigger>
+              <TabsTrigger value="analysis">Enter Symptoms</TabsTrigger>
+              <TabsTrigger value="results" disabled={!analysisResult}>Results</TabsTrigger>
             </TabsList>
 
             <TabsContent value="analysis">
               <Card className="border-2 border-[#9b87f5]/20 shadow-lg">
                 <CardHeader>
-                  <CardTitle>अपने लक्षणों का वर्णन करें</CardTitle>
+                  <CardTitle>Describe Your Symptoms</CardTitle>
                   <CardDescription>
-                    हिंदी या अंग्रेजी में अपने लक्षणों का विस्तृत वर्णन दें
+                    Provide a detailed description of your symptoms in English
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="flex gap-4">
                     <Input
-                      placeholder="अपने लक्षणों का यहां वर्णन करें..."
+                      placeholder="Describe your symptoms here..."
                       value={symptoms}
                       onChange={(e) => setSymptoms(e.target.value)}
                       className="flex-1"
@@ -119,19 +115,19 @@ const SymptomAnalyzer = () => {
                       {isAnalyzing ? (
                         <>
                           <Brain className="mr-2 h-4 w-4 animate-pulse" />
-                          विश्लेषण हो रहा है...
+                          Analyzing...
                         </>
                       ) : (
                         <>
                           <Search className="mr-2 h-4 w-4" />
-                          विश्लेषण करें
+                          Analyze
                         </>
                       )}
                     </Button>
                   </div>
 
                   <div>
-                    <h3 className="text-sm font-medium mb-2">सामान्य लक्षण</h3>
+                    <h3 className="text-sm font-medium mb-2">Common Symptoms</h3>
                     <div className="flex flex-wrap gap-2">
                       {commonSymptoms.map((symptom) => (
                         <Button
@@ -157,12 +153,12 @@ const SymptomAnalyzer = () => {
                       <div className="flex items-center justify-between">
                         <CardTitle className="flex items-center gap-2">
                           <Activity className="h-5 w-5 text-[#9b87f5]" />
-                          संभावित स्थितियां
+                          Possible Conditions
                         </CardTitle>
-                        <Badge className="bg-[#9b87f5]">AI विश्लेषण</Badge>
+                        <Badge className="bg-[#9b87f5]">AI Analysis</Badge>
                       </div>
                       <CardDescription>
-                        आपके लक्षणों के आधार पर, ये स्थितियां संभावित हैं
+                        Based on your symptoms, these conditions are possible
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -175,8 +171,7 @@ const SymptomAnalyzer = () => {
                                 condition.probability === 'High' ? 'destructive' :
                                 condition.probability === 'Medium' ? 'default' : 'outline'
                               }>
-                                {condition.probability === 'High' ? 'उच्च संभावना' :
-                                 condition.probability === 'Medium' ? 'मध्यम संभावना' : 'निम्न संभावना'}
+                                {condition.probability} Probability
                               </Badge>
                             </div>
                             <p className="text-sm text-gray-600">{condition.description}</p>
@@ -185,7 +180,7 @@ const SymptomAnalyzer = () => {
                       </div>
                     </CardContent>
                     <CardFooter className="text-xs text-gray-500 border-t p-4">
-                      ये सिर्फ संभावित स्थितियां हैं और इन्हें पक्का निदान न मानें। कृपया सही निदान के लिए चिकित्सक से परामर्श करें।
+                      These are possible conditions only and should not be considered as a definitive diagnosis. Please consult a healthcare provider for proper diagnosis.
                     </CardFooter>
                   </Card>
 
@@ -193,10 +188,10 @@ const SymptomAnalyzer = () => {
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
                         <Brain className="h-5 w-5 text-[#9b87f5]" />
-                        विशेषज्ञ सिफारिश
+                        Specialist Recommendation
                       </CardTitle>
                       <CardDescription>
-                        आपके लक्षणों के लिए सबसे उपयुक्त चिकित्सा विशेषज्ञ
+                        Most appropriate medical specialist for your symptoms
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-6">
@@ -210,14 +205,13 @@ const SymptomAnalyzer = () => {
                         <div className="flex items-center text-sm">
                           <Clock className="h-4 w-4 mr-1 text-[#9b87f5]" />
                           <span>
-                            प्राथमिकता: {' '}
+                            Priority: {' '}
                             <span className={
                               analysisResult.specialistRecommendation.urgency === 'Immediate' ? 'text-red-500 font-medium' :
                               analysisResult.specialistRecommendation.urgency === 'Soon' ? 'text-amber-500 font-medium' : 
                               'text-green-500 font-medium'
                             }>
-                              {analysisResult.specialistRecommendation.urgency === 'Immediate' ? 'तत्काल' :
-                               analysisResult.specialistRecommendation.urgency === 'Soon' ? 'जल्द' : 'नियमित'}
+                              {analysisResult.specialistRecommendation.urgency}
                             </span>
                           </span>
                         </div>
@@ -229,7 +223,7 @@ const SymptomAnalyzer = () => {
                           onClick={() => bookAppointment(analysisResult.specialistRecommendation.specialty)}
                         >
                           <CalendarClock className="mr-2 h-4 w-4" />
-                          विशेषज्ञ अपॉइंटमेंट बुक करें
+                          Book Specialist Appointment
                         </Button>
                         <Button 
                           variant="outline" 
@@ -237,16 +231,16 @@ const SymptomAnalyzer = () => {
                           onClick={() => bookAppointment(analysisResult.specialistRecommendation.specialty)}
                         >
                           <Video className="mr-2 h-4 w-4" />
-                          वीडियो परामर्श बुक करें
+                          Book Video Consultation
                         </Button>
                       </div>
                     </CardContent>
                     <CardFooter className="flex flex-col items-start border-t p-4">
                       <p className="text-xs text-gray-500 mb-2">
-                        नोट: अगर आपके लक्षण गंभीर हैं या आपातकालीन स्थिति है, तो कृपया तुरंत आपातकालीन चिकित्सा सेवा से संपर्क करें।
+                        Note: If your symptoms are severe or you have an emergency condition, please contact emergency medical services immediately.
                       </p>
                       <Button variant="link" className="p-0 h-auto text-xs" onClick={() => setActiveTab("analysis")}>
-                        अन्य लक्षणों का विश्लेषण करें
+                        Analyze Other Symptoms
                       </Button>
                     </CardFooter>
                   </Card>
