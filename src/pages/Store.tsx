@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -34,11 +33,11 @@ const medicines = [
   {
     id: "1",
     name: "Paracetamol 500mg",
-    brand: "Crocin",
+    brand: "Calpol",
     category: "otc",
-    price: 45,
+    price: 35,
     image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=300",
-    description: "For fever and mild to moderate pain",
+    description: "Fever and pain relief medication",
     prescription: false,
     stock: 150,
   },
@@ -47,7 +46,7 @@ const medicines = [
     name: "Amoxicillin 250mg",
     brand: "Mox",
     category: "prescription",
-    price: 120,
+    price: 95,
     image: "https://images.unsplash.com/photo-1550572017-53a79502c33b?auto=format&fit=crop&q=80&w=300",
     description: "Antibiotic for bacterial infections",
     prescription: true,
@@ -55,35 +54,35 @@ const medicines = [
   },
   {
     id: "3",
-    name: "Vitamin D3 1000 IU",
-    brand: "Depura",
-    category: "vitamins",
-    price: 195,
+    name: "Cetirizine 10mg",
+    brand: "Cetrizet",
+    category: "otc",
+    price: 45,
     image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&q=80&w=300",
-    description: "Daily supplement for bone health",
+    description: "Antiallergic medication",
     prescription: false,
     stock: 200,
   },
   {
     id: "4",
-    name: "Digital Thermometer",
+    name: "Blood Pressure Monitor",
     brand: "Dr. Morepen",
     category: "devices",
-    price: 250,
+    price: 1999,
     image: "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?auto=format&fit=crop&q=80&w=300",
-    description: "Accurate temperature measurement",
+    description: "Digital BP monitor with memory",
     prescription: false,
     stock: 45,
   },
   {
     id: "5",
-    name: "Elastic Bandage",
-    brand: "Dyna",
-    category: "first-aid",
-    price: 80,
+    name: "Metformin 500mg",
+    brand: "Glycomet",
+    category: "prescription",
+    price: 85,
     image: "https://images.unsplash.com/photo-1631815587646-b85a1bb027e3?auto=format&fit=crop&q=80&w=300",
-    description: "For sprains and muscle support",
-    prescription: false,
+    description: "Diabetes medication",
+    prescription: true,
     stock: 120,
   },
   {
@@ -160,10 +159,8 @@ const Store = () => {
   const [wishlist, setWishlist] = useState<string[]>([]);
 
   const filteredMedicines = medicines.filter(medicine => {
-    // Filter by category
     const categoryMatch = activeCategory === "all" || medicine.category === activeCategory;
     
-    // Filter by search query
     const searchMatch = medicine.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                        medicine.brand.toLowerCase().includes(searchQuery.toLowerCase()) ||
                        medicine.description.toLowerCase().includes(searchQuery.toLowerCase());
@@ -175,12 +172,10 @@ const Store = () => {
     const existingItemIndex = cart.findIndex(item => item.id === medicine.id);
     
     if (existingItemIndex >= 0) {
-      // Item already in cart, increase quantity
       const updatedCart = [...cart];
       updatedCart[existingItemIndex].quantity += 1;
       setCart(updatedCart);
     } else {
-      // Add new item to cart
       setCart([...cart, { 
         id: medicine.id,
         name: medicine.name,
@@ -202,10 +197,8 @@ const Store = () => {
       const newQuantity = updatedCart[existingItemIndex].quantity + change;
       
       if (newQuantity <= 0) {
-        // Remove item if quantity becomes 0 or negative
         updatedCart.splice(existingItemIndex, 1);
       } else {
-        // Update quantity
         updatedCart[existingItemIndex].quantity = newQuantity;
       }
       
@@ -229,7 +222,6 @@ const Store = () => {
   };
 
   const handleCheckout = () => {
-    // Save cart to localStorage for the payment page
     localStorage.setItem('currentCart', JSON.stringify({
       items: cart,
       subtotal: cartTotal,
@@ -237,7 +229,6 @@ const Store = () => {
       total: cartTotal + 40
     }));
     
-    // Navigate to a payment page (this would need to be created)
     toast.success("Redirecting to payment...");
     navigate('/payment');
   };
@@ -257,9 +248,7 @@ const Store = () => {
         </div>
         
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Main Content - Products */}
           <div className="lg:w-3/4">
-            {/* Search and Filter Bar */}
             <div className="flex flex-col sm:flex-row gap-4 mb-6">
               <div className="relative flex-grow">
                 <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
@@ -276,7 +265,6 @@ const Store = () => {
               </Button>
             </div>
             
-            {/* Categories */}
             <div className="mb-8 overflow-x-auto">
               <Tabs 
                 value={activeCategory}
@@ -295,7 +283,6 @@ const Store = () => {
                   ))}
                 </TabsList>
                 
-                {/* Products Grid */}
                 {medicineCategories.map((category) => (
                   <TabsContent key={category.id} value={category.id} className="mt-0">
                     {filteredMedicines.length > 0 ? (
@@ -360,7 +347,6 @@ const Store = () => {
             </div>
           </div>
           
-          {/* Sidebar - Cart */}
           <div className="lg:w-1/4">
             <div className="bg-white rounded-lg shadow-sm p-6 sticky top-24">
               <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">

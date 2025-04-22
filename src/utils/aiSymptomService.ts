@@ -25,81 +25,67 @@ export const analyzeSymptoms = (symptoms: string): Promise<AnalysisResult> => {
     setTimeout(() => {
       const symptomLower = symptoms.toLowerCase();
       
-      if (symptomLower.includes('head') || symptomLower.includes('headache')) {
-        resolve({
-          conditions: [
-            {
-              name: 'Tension Headache',
-              probability: 'High',
-              description: 'A primary headache condition characterized by mild to moderate pain, often described as a tight band around the head. Common triggers include stress, lack of sleep, or eye strain.',
-              symptoms: ['Dull head pain', 'Pressure around forehead', 'Tender scalp', 'Neck stiffness'],
-              precautions: ['Rest in quiet room', 'Stay hydrated', 'Avoid bright lights', 'Practice stress management']
-            },
-            { 
-              name: 'Migraine', 
-              probability: 'Medium',
-              description: 'A neurological condition causing severe throbbing pain, usually on one side of the head. Often accompanied by sensitivity to light and sound, nausea, and visual disturbances.',
-              symptoms: ['Severe head pain', 'Nausea', 'Sensitivity to light and sound', 'Visual aura'],
-              precautions: ['Rest in a dark, quiet room', 'Take prescribed medication', 'Avoid triggers', 'Stay hydrated']
-            },
-            { 
-              name: 'Cluster Headache', 
-              probability: 'Low',
-              description: 'Extremely severe headaches occurring in cyclical patterns. Pain is typically centered around one eye and can last from 15 minutes to 3 hours.',
-              symptoms: ['Intense one-sided pain', 'Eye tearing', 'Nasal congestion', 'Restlessness'],
-              precautions: ['Seek immediate medical attention', 'Use prescribed treatments', 'Avoid alcohol during clusters']
-            },
-          ],
-          specialistRecommendation: {
-            specialty: 'neurology',
-            description: 'A neurologist specializes in diagnosing and treating disorders of the nervous system, including complex headache conditions. They can perform detailed neurological examinations and recommend appropriate treatment plans.',
-            urgency: 'Soon',
-            virtualConsultAvailable: true,
-            estimatedCost: '₹800 - ₹1500'
-          },
-          additionalRecommendations: {
-            lifestyle: ['Maintain regular sleep schedule', 'Practice stress management', 'Stay hydrated', 'Exercise regularly'],
-            immediateSteps: ['Take prescribed medication', 'Rest in a quiet, dark room', 'Apply cold/hot compress'],
-            followUp: 'Schedule a follow-up in 2 weeks if symptoms persist or worsen'
-          }
-        });
-      } 
-      else if (symptomLower.includes('chest') || symptomLower.includes('heart') || symptomLower.includes('छाती') || symptomLower.includes('दिल')) {
+      if (symptomLower.includes('chest') || symptomLower.includes('heart')) {
         resolve({
           conditions: [
             { 
-              name: 'Acid Reflux', 
+              name: 'Acute Coronary Syndrome', 
               probability: 'High',
-              description: 'Backward flow of stomach acid into the esophagus, causing heartburn.',
-              symptoms: ['Heartburn', 'Indigestion', 'Nausea'],
-              precautions: ['Avoid spicy foods', 'Stay upright after meals', 'Take prescribed medication']
+              description: 'A range of conditions associated with sudden, reduced blood flow to the heart.',
+              symptoms: ['Chest pain', 'Shortness of breath', 'Cold sweat'],
+              precautions: ['Seek immediate medical attention', 'Take prescribed medication', 'Rest']
             },
             { 
-              name: 'Angina', 
+              name: 'Anxiety Attack', 
               probability: 'Medium',
-              description: 'Chest pain caused by reduced blood flow to the heart muscle.',
-              symptoms: ['Chest pain', 'Shortness of breath', 'Nausea'],
-              precautions: ['Rest in a quiet, dark room', 'Take prescribed medication', 'Avoid stress']
-            },
-            { 
-              name: 'Anxiety', 
-              probability: 'Medium',
-              description: 'Psychological condition causing chest tightness and rapid heart rate.',
-              symptoms: ['Chest tightness', 'Rapid heart rate', 'Anxiety'],
-              precautions: ['Practice deep breathing exercises', 'Seek professional help', 'Avoid caffeine']
-            },
+              description: 'A sudden episode of intense fear that triggers severe physical reactions.',
+              symptoms: ['Rapid heartbeat', 'Chest tightness', 'Breathing difficulty'],
+              precautions: ['Practice deep breathing', 'Stay calm', 'Contact healthcare provider']
+            }
           ],
           specialistRecommendation: {
             specialty: 'cardiology',
-            description: 'A cardiologist specializes in diagnosing and treating heart conditions.',
-            urgency: 'Soon',
+            description: 'Immediate cardiology consultation recommended for chest pain evaluation.',
+            urgency: 'Immediate',
             virtualConsultAvailable: true,
-            estimatedCost: '₹1000 - ₹2000'
+            estimatedCost: '₹2000 - ₹3500'
           },
           additionalRecommendations: {
-            lifestyle: ['Maintain regular exercise', 'Eat a healthy diet', 'Avoid smoking'],
-            immediateSteps: ['Take prescribed medication', 'Rest in a quiet, dark room'],
-            followUp: 'Schedule a follow-up in 2 weeks if symptoms persist'
+            lifestyle: ['Avoid strenuous activity', 'Monitor blood pressure', 'Take prescribed medications'],
+            immediateSteps: ['Call emergency services', 'Take aspirin if prescribed', 'Stay calm'],
+            followUp: 'Schedule immediate follow-up with cardiologist'
+          }
+        });
+      } 
+      else if (symptomLower.includes('head') || symptomLower.includes('migraine')) {
+        resolve({
+          conditions: [
+            {
+              name: 'Migraine',
+              probability: 'High',
+              description: 'A neurological condition causing severe headaches with various triggers.',
+              symptoms: ['Severe headache', 'Light sensitivity', 'Nausea'],
+              precautions: ['Rest in dark room', 'Stay hydrated', 'Avoid triggers']
+            },
+            {
+              name: 'Tension Headache',
+              probability: 'Medium',
+              description: 'Common headache caused by muscle tension and stress.',
+              symptoms: ['Dull head pain', 'Neck tension', 'Stress'],
+              precautions: ['Stress management', 'Regular breaks', 'Good posture']
+            }
+          ],
+          specialistRecommendation: {
+            specialty: 'neurology',
+            description: 'A neurologist can help diagnose and treat recurring headaches.',
+            urgency: 'Soon',
+            virtualConsultAvailable: true,
+            estimatedCost: '₹1500 - ₹3000'
+          },
+          additionalRecommendations: {
+            lifestyle: ['Regular sleep schedule', 'Stress management', 'Trigger avoidance'],
+            immediateSteps: ['Rest in quiet room', 'Take prescribed medication'],
+            followUp: 'Book appointment if symptoms persist'
           }
         });
       } 
