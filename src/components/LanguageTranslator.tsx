@@ -18,42 +18,19 @@ const languages = [
   { code: "pa", name: "ਪੰਜਾਬੀ (Punjabi)" },
 ];
 
-// This is a mock translation function
-// In a real application, you would integrate with an actual translation API
-const mockTranslate = (text: string, targetLang: string) => {
-  // For demonstration purposes only - doesn't actually translate
-  if (targetLang === "en") return text;
-  
-  // In a real app, this would call a translation API
-  console.log(`Translating to ${targetLang}: ${text}`);
-  return text; // Return original text for now
-};
-
 const LanguageTranslator = () => {
   const [currentLanguage, setCurrentLanguage] = useState("en");
   
   const handleLanguageChange = (langCode: string) => {
     setCurrentLanguage(langCode);
-    // In a real app, this would trigger translation of page content
     document.documentElement.lang = langCode;
-    
-    // Store the language preference
     localStorage.setItem("preferredLanguage", langCode);
-    
-    // Mock translation demonstration
-    console.log(`Language changed to: ${langCode}`);
-    
-    // You would typically have a context provider that manages translations
-    // and updates the UI when language changes
   };
   
   useEffect(() => {
-    // Load saved language preference
-    const savedLanguage = localStorage.getItem("preferredLanguage");
-    if (savedLanguage) {
-      setCurrentLanguage(savedLanguage);
-      document.documentElement.lang = savedLanguage;
-    }
+    const savedLanguage = localStorage.getItem("preferredLanguage") || "en";
+    setCurrentLanguage(savedLanguage);
+    document.documentElement.lang = savedLanguage;
   }, []);
 
   return (

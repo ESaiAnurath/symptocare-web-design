@@ -1,4 +1,3 @@
-
 import { ArrowRight, Brain, Activity, Video, CloudCog } from 'lucide-react';
 import { Button } from './ui/button';
 import { useNavigate } from 'react-router-dom';
@@ -8,24 +7,18 @@ const Hero = () => {
 
   return (
     <div className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-[#D3E4FD] to-white">
-      <div 
-        className="absolute inset-0 bg-white/40"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      />
+      <div className="absolute inset-0 bg-white/40" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+      }} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-5xl md:text-6xl font-bold font-poppins mb-6 tracking-tight">
-              आपका स्वास्थ्य,<br />
-              <span className="text-[#9b87f5]">हमारी देखभाल।</span>
-              <span className="block text-xl font-normal text-gray-600 mt-2">
-                Your Health, Our Care.
-              </span>
+              Your Health,<br />
+              <span className="text-[#9b87f5]">Our Care.</span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              AI-आधारित स्वास्थ्य सेवा का अनुभव करें। तुरंत लक्षण विश्लेषण प्राप्त करें, विशेषज्ञों से जुड़ें, और गुणवत्तापूर्ण चिकित्सा आपूर्ति तक पहुंचें - सब एक ही जगह पर।
+              Experience AI-powered healthcare. Get instant symptom analysis, connect with specialists, and access quality medical supplies - all in one place.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
@@ -33,7 +26,7 @@ const Hero = () => {
                 className="bg-[#9b87f5] hover:bg-[#8b77e5] text-lg h-12"
                 onClick={() => navigate('/analyzer')}
               >
-                लक्षण विश्लेषण करें
+                Get Instant Symptom Analysis
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button 
@@ -42,14 +35,14 @@ const Hero = () => {
                 className="text-lg h-12"
                 onClick={() => navigate('/doctors')}
               >
-                डॉक्टर खोजें
+                Find a Doctor
               </Button>
             </div>
             <div className="mt-12 grid grid-cols-3 gap-8">
               {[
-                ['10L+', 'सक्रिय उपयोगकर्ता'],
-                ['500+', 'विशेषज्ञ'],
-                ['24/7', 'सहायता'],
+                ['10L+', 'Active Users'],
+                ['500+', 'Specialists'],
+                ['24/7', 'Support'],
               ].map(([stat, label]) => (
                 <div key={label}>
                   <div className="text-2xl font-bold text-[#9b87f5]">{stat}</div>
@@ -68,12 +61,12 @@ const Hero = () => {
             
             <div className="absolute top-4 left-4 bg-white p-4 rounded-xl shadow-lg z-20 flex items-center">
               <Brain className="text-[#9b87f5] mr-2" />
-              <span className="font-medium">AI लक्षण विश्लेषण</span>
+              <span className="font-medium">AI Symptom Analysis</span>
             </div>
             
             <div className="absolute bottom-4 right-4 bg-white p-4 rounded-xl shadow-lg z-20 flex items-center">
               <Video className="text-[#9b87f5] mr-2" />
-              <span className="font-medium">वीडियो परामर्श</span>
+              <span className="font-medium">Video Consultation</span>
             </div>
           </div>
         </div>
@@ -82,23 +75,23 @@ const Hero = () => {
           {[
             {
               icon: Brain,
-              title: "AI लक्षण विश्लेषण",
-              description: "अपने लक्षणों का AI द्वारा विश्लेषण करें और संभावित स्थितियों के बारे में जानें"
+              title: "AI Symptom Analysis",
+              description: "Get instant symptom analysis and understand potential outcomes"
             },
             {
               icon: Activity,
-              title: "सही विशेषज्ञ से जुड़ें",
-              description: "आपके लक्षणों के आधार पर सबसे उपयुक्त विशेषज्ञ से जुड़ें"
+              title: "Connect with Specialists",
+              description: "Connect with the most qualified specialists based on your symptoms"
             },
             {
               icon: Video,
-              title: "वीडियो परामर्श",
-              description: "घर बैठे विशेषज्ञों से वीडियो कॉल के माध्यम से परामर्श करें"
+              title: "Video Consultation",
+              description: "Get video consultations with digital health experts"
             },
             {
               icon: CloudCog,
-              title: "सुरक्षित स्वास्थ्य रिकॉर्ड",
-              description: "अपने स्वास्थ्य रिकॉर्ड को क्लाउड पर सुरक्षित रूप से संग्रहित करें"
+              title: "Secure Health Records",
+              description: "Store your health records securely in the cloud"
             }
           ].map((feature, index) => (
             <div key={index} className="bg-white p-6 rounded-xl shadow-md border border-gray-100">

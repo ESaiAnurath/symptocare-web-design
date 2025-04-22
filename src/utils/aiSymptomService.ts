@@ -1,7 +1,3 @@
-
-// Mock AI symptom analysis service
-// In a production app, this would connect to a real ML model API
-
 interface AnalysisResult {
   conditions: Array<{
     name: string;
@@ -15,16 +11,12 @@ interface AnalysisResult {
   };
 }
 
-// This simulates an AI model analyzing symptoms
 export const analyzeSymptoms = (symptoms: string): Promise<AnalysisResult> => {
   return new Promise((resolve) => {
-    // Simulate API delay
     setTimeout(() => {
-      // Very basic keyword matching for demo purposes
-      // In a real app, this would be a sophisticated ML model
       const symptomLower = symptoms.toLowerCase();
       
-      if (symptomLower.includes('head') || symptomLower.includes('मिरगी') || symptomLower.includes('सिरदर्द')) {
+      if (symptomLower.includes('head') || symptomLower.includes('headache')) {
         resolve({
           conditions: [
             { 
@@ -207,7 +199,6 @@ export const analyzeSymptoms = (symptoms: string): Promise<AnalysisResult> => {
         });
       } 
       else {
-        // Default response for any other symptoms
         resolve({
           conditions: [
             { 
@@ -223,6 +214,6 @@ export const analyzeSymptoms = (symptoms: string): Promise<AnalysisResult> => {
           }
         });
       }
-    }, 1500); // 1.5 second delay to simulate AI processing
+    }, 1500);
   });
 };
