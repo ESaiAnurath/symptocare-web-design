@@ -1,4 +1,3 @@
-
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, User, Settings, LogOut } from 'lucide-react';
 import { Button } from './ui/button';
@@ -26,7 +25,7 @@ const Navbar = () => {
 
   const commonNavItems = [
     { title: 'Home', href: '/' },
-    { title: 'Symptom Analyzer', href: '/analyzer' },
+    { title: 'AI लक्षण विश्लेषक', href: '/analyzer' },
     { title: 'Medical Store', href: '/store' },
     { title: 'Find Doctors', href: '/doctors' },
     { title: 'Services', href: '/services' },
