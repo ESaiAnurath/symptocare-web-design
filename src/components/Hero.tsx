@@ -1,4 +1,5 @@
-import { ArrowRight, Brain, Activity, Video, CloudCog } from 'lucide-react';
+
+import { ArrowRight, Brain, Activity, CloudCog } from 'lucide-react';
 import { Button } from './ui/button';
 import { useNavigate } from 'react-router-dom';
 
@@ -65,8 +66,8 @@ const Hero = () => {
             </div>
             
             <div className="absolute bottom-4 right-4 bg-white p-4 rounded-xl shadow-lg z-20 flex items-center">
-              <Video className="text-[#9b87f5] mr-2" />
-              <span className="font-medium">Video Consultation</span>
+              <Activity className="text-[#9b87f5] mr-2" />
+              <span className="font-medium">Expert Consultation</span>
             </div>
           </div>
         </div>
@@ -82,11 +83,6 @@ const Hero = () => {
               icon: Activity,
               title: "Connect with Specialists",
               description: "Connect with the most qualified specialists based on your symptoms"
-            },
-            {
-              icon: Video,
-              title: "Video Consultation",
-              description: "Get video consultations with digital health experts"
             },
             {
               icon: CloudCog,

@@ -1,3 +1,4 @@
+
 import { Search, Brain, Activity, Clock, CalendarClock, Video } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { analyzeSymptoms } from "@/utils/ai/symptomAnalysisService";
+import { Textarea } from "@/components/ui/textarea";
 
 const commonSymptoms = [
   "Headache",
@@ -96,20 +98,20 @@ const SymptomAnalyzer = () => {
                 <CardHeader>
                   <CardTitle>Describe Your Symptoms</CardTitle>
                   <CardDescription>
-                    Provide a detailed description of your symptoms in English
+                    Provide a detailed description of your health concerns or symptoms
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <div className="flex gap-4">
-                    <Input
-                      placeholder="Describe your symptoms here..."
+                  <div className="flex flex-col gap-4">
+                    <Textarea
+                      placeholder="Describe your symptoms or health concerns in detail..."
                       value={symptoms}
                       onChange={(e) => setSymptoms(e.target.value)}
-                      className="flex-1"
+                      className="min-h-[120px]"
                     />
                     <Button 
                       onClick={handleAnalyze}
-                      className="bg-[#9b87f5] hover:bg-[#8b77e5]"
+                      className="bg-[#9b87f5] hover:bg-[#8b77e5] w-full md:w-auto md:self-end"
                       disabled={isAnalyzing}
                     >
                       {isAnalyzing ? (
@@ -120,7 +122,7 @@ const SymptomAnalyzer = () => {
                       ) : (
                         <>
                           <Search className="mr-2 h-4 w-4" />
-                          Analyze
+                          Analyze Symptoms
                         </>
                       )}
                     </Button>
@@ -134,7 +136,7 @@ const SymptomAnalyzer = () => {
                           key={symptom}
                           variant="outline"
                           className="text-sm"
-                          onClick={() => setSymptoms(symptom)}
+                          onClick={() => setSymptoms(symptoms ? `${symptoms}, ${symptom.toLowerCase()}` : symptom)}
                         >
                           {symptom}
                         </Button>

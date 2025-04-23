@@ -9,17 +9,17 @@ const Insurance = () => {
       id: 1,
       name: "Family Health Insurance",
       status: "Active",
-      premium: "$299/month",
+      premium: "₹2,999/month",
       nextPayment: "2025-05-15",
-      coverage: "$500,000",
+      coverage: "₹5,00,000",
     },
     {
       id: 2,
       name: "Dental Coverage",
       status: "Active",
-      premium: "$49/month",
+      premium: "₹499/month",
       nextPayment: "2025-05-01",
-      coverage: "$25,000",
+      coverage: "₹25,000",
     },
   ];
 
@@ -28,14 +28,14 @@ const Insurance = () => {
       id: 1,
       date: "2025-03-15",
       type: "Hospital Stay",
-      amount: "$5,000",
+      amount: "₹5,000",
       status: "Approved",
     },
     {
       id: 2,
       date: "2025-02-28",
       type: "Prescription",
-      amount: "$150",
+      amount: "₹1,500",
       status: "Processing",
     },
   ];
