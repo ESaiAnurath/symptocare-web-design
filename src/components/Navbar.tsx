@@ -60,9 +60,8 @@ const Navbar = () => {
               </Link>
             ))}
             
-            <div className="flex items-center space-x-4">
-              <LanguageTranslator />
-              
+            {/* Removed LanguageTranslator */}
+            <div className="flex items-center space-x-4">               
               {isLoggedIn ? (
                 <div className="flex items-center space-x-4">
                   {loggedInNavItems.map((item) => (
@@ -101,8 +100,7 @@ const Navbar = () => {
 
           {/* Mobile Navigation */}
           <div className="md:hidden flex items-center space-x-2">
-            <LanguageTranslator />
-            
+            {/* Removed LanguageTranslator */}
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">

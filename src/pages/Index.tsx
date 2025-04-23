@@ -14,9 +14,9 @@ const Index = () => {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">हमारी तकनीकी विशेषताएं</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Technology Stack</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              अत्याधुनिक AI तकनीक का उपयोग करके, हम त्वरित और सटीक लक्षण विश्लेषण प्रदान करते हैं
+              Using cutting-edge AI, we provide rapid and accurate symptom analysis.
             </p>
           </div>
           
@@ -43,29 +43,29 @@ const Index = () => {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">नवाचार और विशेषताएं</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Innovation and Features</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              हमारा एकीकृत दृष्टिकोण स्वास्थ्य सेवा को अधिक सुलभ और प्रभावी बनाता है
+              Our integrated approach makes healthcare more accessible and effective.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                title: "AI + टेलीमेडिसिन + क्लाउड",
-                description: "तीन शक्तिशाली तकनीकों का संयोजन जो स्वास्थ्य सेवा को बदल देता है"
+                title: "AI + Telemedicine + Cloud",
+                description: "Combining three powerful technologies revolutionizing healthcare."
               },
               {
-                title: "ग्रामीण क्षेत्रों में काम करता है",
-                description: "कम बैंडविड्थ और ऑफलाइन क्षमताओं के साथ दूरदराज के क्षेत्रों में उपयोग किया जा सकता है"
+                title: "Works in Rural Areas",
+                description: "Can be used in remote areas with low bandwidth and offline capabilities."
               },
               {
-                title: "शीघ्र निदान",
-                description: "शीघ्र निदान और तत्काल विशेषज्ञ मार्गदर्शन, जटिलताओं को रोकने में मदद करता है"
+                title: "Fast Diagnosis",
+                description: "Get quick analysis and instant specialist guidance—helping prevent complications."
               },
               {
-                title: "एकीकृत स्वास्थ्य प्लेटफॉर्म",
-                description: "लक्षण से लेकर विशेषज्ञ तक, सब कुछ एक ही एप्लिकेशन में उपलब्ध है"
+                title: "Unified Health Platform",
+                description: "From symptoms to specialists, everything is available in one application."
               },
             ].map((point, index) => (
               <Card key={index} className="border-none shadow-md hover:shadow-lg transition-shadow">
@@ -84,37 +84,37 @@ const Index = () => {
       <section className="py-16 bg-gradient-to-br from-[#F1F0FB] to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">प्रभाव और लाभ</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Impact and Benefits</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              हमारा प्लेटफ़ॉर्म स्वास्थ्य सेवा के अनुभव को कैसे बदलता है
+              See how our platform transforms the healthcare experience.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: "बेहतर निदान",
-                description: "स्व-निदान त्रुटियों को कम करता है और जल्दी उपचार सुनिश्चित करता है"
+                title: "Better Diagnosis",
+                description: "Reduces self-diagnosis errors and ensures early treatment."
               },
               {
-                title: "पहुंच में सुधार",
-                description: "ग्रामीण उपयोगकर्ता भी विशेषज्ञों तक आसानी से पहुंच सकते हैं"
+                title: "Improved Accessibility",
+                description: "Even rural users gain easy access to specialists."
               },
               {
-                title: "आर्थिक लाभ",
-                description: "अनावश्यक अस्पताल के दौरे कम करके समय और पैसे की बचत होती है"
+                title: "Cost Savings",
+                description: "Save time and money by reducing unnecessary hospital visits."
               },
               {
-                title: "पर्यावरण अनुकूल",
-                description: "यात्रा कम करके कार्बन पदचिह्न को कम करता है"
+                title: "Eco Friendly",
+                description: "Reduce your carbon footprint by traveling less."
               },
               {
-                title: "सामाजिक प्रभाव",
-                description: "निवारक स्वास्थ्य जागरूकता बढ़ती है"
+                title: "Social Impact",
+                description: "Increases preventive healthcare awareness."
               },
               {
-                title: "समावेशी स्वास्थ्य सेवा",
-                description: "बहुभाषी समर्थन के साथ अधिक लोगों तक पहुंचता है"
+                title: "Inclusive Healthcare",
+                description: "Reaches more people with multilingual support."
               },
             ].map((benefit, index) => (
               <Card key={index} className="border-none shadow-sm">
@@ -132,29 +132,29 @@ const Index = () => {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">भविष्य का विस्तार</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Future Scope</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              हमारे प्लेटफॉर्म के भविष्य के विकास और विस्तार की योजनाएँ
+              Plans for future developments and expansion of our platform.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                title: "विभिन्न चिकित्सा पद्धतियों का एकीकरण",
-                description: "एमबीबीएस से लेकर आयुर्वेद, आयुष और होम्योपैथी तक का विस्तार"
+                title: "Integration of Medical Systems",
+                description: "Extending from MBBS to Ayurveda, AYUSH, and Homeopathy."
               },
               {
-                title: "दवा रिमाइंडर",
-                description: "अपनी दवाओं को समय पर लेने के लिए अलार्म और रिमाइंडर"
+                title: "Medicine Reminders",
+                description: "Get alarms and reminders to take your medicine on time."
               },
               {
-                title: "ऑफलाइन डॉक्टर विजिट",
-                description: "घर पर डॉक्टर की विज़िट के लिए बुकिंग सेवा"
+                title: "Offline Doctor Visits",
+                description: "Booking services for home doctor visits."
               },
               {
-                title: "स्वास्थ्य शिक्षा चैटबॉट",
-                description: "स्वास्थ्य शिक्षा और जानकारी के आदान-प्रदान के लिए AI चैटबॉट"
+                title: "Health Education Chatbot",
+                description: "An AI chatbot for information and health education."
               },
             ].map((scope, index) => (
               <Card key={index} className="border border-dashed border-[#9b87f5]">
