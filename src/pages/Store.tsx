@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Pill, Search, ShoppingCart } from "lucide-react";
+import { Search, ShoppingCart } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import MedicineBrowser from "@/components/MedicineBrowser";
@@ -46,6 +46,15 @@ const MedicalStore = () => {
       category: "Hygiene",
     },
   ];
+
+  // Dummy handlers for demonstration
+  const handleAddToCart = (product: typeof featuredProducts[0]) => {
+    alert(`Added ${product.name} to cart!`);
+  };
+
+  const handleBookNow = (product: typeof featuredProducts[0]) => {
+    alert(`Booked ${product.name}!`);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -96,12 +105,17 @@ const MedicalStore = () => {
                     <CardContent className="p-4">
                       <Badge className="mb-2">{product.category}</Badge>
                       <h3 className="font-semibold text-lg mb-1">{product.name}</h3>
-                      <div className="flex justify-between items-center mt-2">
+                      <div className="flex justify-between items-center mt-2 gap-2">
                         <span className="font-bold text-[#9b87f5]">{product.price}</span>
-                        <Button size="sm">
-                          <ShoppingCart className="h-4 w-4 mr-2" />
-                          Add to Cart
-                        </Button>
+                        <div className="flex gap-2">
+                          <Button size="sm" onClick={() => handleAddToCart(product)}>
+                            <ShoppingCart className="h-4 w-4 mr-2" />
+                            Add to Cart
+                          </Button>
+                          <Button size="sm" variant="outline" onClick={() => handleBookNow(product)}>
+                            Book Now
+                          </Button>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
@@ -113,7 +127,7 @@ const MedicalStore = () => {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center">
-                    <Pill className="mr-2 h-5 w-5 text-[#9b87f5]" />
+                    {/* Cannot use Pill icon per lucide-react-icons allowed list, so omit or use Cart icon if desired */}
                     Browse Medicines
                   </CardTitle>
                 </CardHeader>
@@ -137,3 +151,4 @@ const MedicalStore = () => {
 };
 
 export default MedicalStore;
+
