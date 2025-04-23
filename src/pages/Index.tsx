@@ -10,35 +10,6 @@ const Index = () => {
       <Navbar />
       <Hero />
       
-      {/* Tech Stack Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Technology Stack</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Using cutting-edge AI, we provide rapid and accurate symptom analysis.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
-            {[
-              { name: "React.js", type: "Frontend", color: "bg-blue-100 text-blue-800" },
-              { name: "Express.js", type: "Backend", color: "bg-green-100 text-green-800" },
-              { name: "MongoDB", type: "Database", color: "bg-emerald-100 text-emerald-800" },
-              { name: "TensorFlow", type: "AI/ML", color: "bg-orange-100 text-orange-800" },
-              { name: "AWS/GCP", type: "Cloud", color: "bg-purple-100 text-purple-800" },
-            ].map((tech, index) => (
-              <Card key={index} className="text-center border-none shadow-sm hover:shadow-md transition-shadow">
-                <CardContent className="pt-6">
-                  <Badge className={tech.color}>{tech.type}</Badge>
-                  <h3 className="font-semibold mt-2">{tech.name}</h3>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-      
       {/* Innovation Points */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -114,7 +85,7 @@ const Index = () => {
               },
               {
                 title: "Inclusive Healthcare",
-                description: "Reaches more people with multilingual support."
+                description: "Reaches more people with clear communication."
               },
             ].map((benefit, index) => (
               <Card key={index} className="border-none shadow-sm">
@@ -142,7 +113,7 @@ const Index = () => {
             {[
               {
                 title: "Integration of Medical Systems",
-                description: "Extending from MBBS to Ayurveda, AYUSH, and Homeopathy."
+                description: "Extending from MBBS to various medical practices."
               },
               {
                 title: "Medicine Reminders",
