@@ -1,7 +1,7 @@
 
 import Navbar from "@/components/Navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Ambulance, ShoppingCart, Microscope, Phone, AlertTriangle, FirstAidKit } from "lucide-react";
+import { Ambulance, ShoppingCart, Microscope, Phone, AlertTriangle, Bandage } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Services = () => {
@@ -44,7 +44,7 @@ const Services = () => {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <FirstAidKit className="h-5 w-5 text-blue-500" />
+                <Bandage className="h-5 w-5 text-blue-500" />
                 First Aid
               </CardTitle>
             </CardHeader>

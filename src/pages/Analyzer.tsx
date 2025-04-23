@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/components/ui/use-toast";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
-import { analyzeSymptoms } from "@/utils/aiSymptomService";
+import { analyzeSymptoms } from "@/utils/ai/symptomAnalysisService";
 
 const commonSymptoms = [
   "Headache",
