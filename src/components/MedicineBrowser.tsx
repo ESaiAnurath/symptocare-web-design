@@ -1,11 +1,13 @@
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Pill, Search, BadgeIndianRupee } from "lucide-react";
+import { Pill, Search, BadgeIndianRupee, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 const alphabetLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
@@ -44,6 +46,7 @@ interface Medicine {
 }
 
 const MedicineBrowser = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("alphabetical");
   const [searchTerm, setSearchTerm] = useState("");
   const [activeLetter, setActiveLetter] = useState("A");
@@ -57,6 +60,86 @@ const MedicineBrowser = () => {
 
   const handleMedicineSelect = (medicine: Medicine) => {
     setSelectedMedicine(medicine);
+  };
+
+  const updateCartCount = () => {
+    // This function is just for UI update, the actual count is stored in localStorage
+    const event = new Event('cartUpdated');
+    window.dispatchEvent(event);
+  };
+
+  const handleAddToCart = (medicine: Medicine) => {
+    const currentCart = JSON.parse(localStorage.getItem("currentCart") || "{}");
+    
+    // Convert price from string to number, removing the ₹ symbol
+    const priceNumber = Number(medicine.price.replace("₹", ""));
+    
+    const existingItemIndex = currentCart.items ? 
+      currentCart.items.findIndex(item => item.id === medicine.id) : -1;
+
+    if (existingItemIndex >= 0) {
+      // Item already exists, increment quantity
+      currentCart.items[existingItemIndex].quantity += 1;
+    } else {
+      // Add new item
+      if (!currentCart.items) currentCart.items = [];
+      
+      currentCart.items.push({
+        id: medicine.id,
+        name: medicine.name,
+        brand: medicine.type,
+        price: priceNumber,
+        quantity: 1,
+        image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=500", // Default medicine image
+      });
+    }
+
+    // Calculate totals
+    currentCart.subtotal = currentCart.items.reduce(
+      (total, item) => total + (item.price * item.quantity), 0);
+    currentCart.shipping = currentCart.subtotal > 0 ? 50 : 0; // ₹50 flat shipping
+    currentCart.total = currentCart.subtotal + currentCart.shipping;
+
+    // Save updated cart
+    localStorage.setItem("currentCart", JSON.stringify(currentCart));
+    
+    // Update cart count in UI
+    updateCartCount();
+    
+    toast.success(`Added ${medicine.name} to cart!`);
+  };
+
+  const handleBookNow = (medicine: Medicine) => {
+    // Clear the cart first
+    const freshCart = {
+      items: [],
+      subtotal: 0,
+      shipping: 0,
+      total: 0
+    };
+    
+    // Add this medicine to cart
+    const priceNumber = Number(medicine.price.replace("₹", ""));
+    freshCart.items.push({
+      id: medicine.id,
+      name: medicine.name,
+      brand: medicine.type,
+      price: priceNumber,
+      quantity: 1,
+      image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=500", // Default medicine image
+    });
+    
+    // Calculate totals
+    freshCart.subtotal = priceNumber;
+    freshCart.shipping = 50; // ₹50 flat shipping
+    freshCart.total = freshCart.subtotal + freshCart.shipping;
+    
+    // Save cart and navigate to payment
+    localStorage.setItem("currentCart", JSON.stringify(freshCart));
+    updateCartCount();
+    
+    // Navigate to payment page
+    navigate("/payment");
   };
 
   return (
@@ -199,10 +282,15 @@ const MedicineBrowser = () => {
             </div>
             <div className="flex justify-between items-center pt-2">
               <div className="font-semibold text-lg text-[#9b87f5]">{selectedMedicine.price}</div>
-              <Button>
-                <Pill className="h-4 w-4 mr-2" />
-                Add to Cart
-              </Button>
+              <div className="flex gap-2">
+                <Button onClick={() => handleAddToCart(selectedMedicine)}>
+                  <ShoppingCart className="h-4 w-4 mr-2" />
+                  Add to Cart
+                </Button>
+                <Button variant="outline" onClick={() => handleBookNow(selectedMedicine)}>
+                  Book Now
+                </Button>
+              </div>
             </div>
           </CardContent>
         </Card>

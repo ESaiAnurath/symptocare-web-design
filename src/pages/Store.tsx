@@ -1,5 +1,6 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,9 +9,12 @@ import { Search, ShoppingCart } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import MedicineBrowser from "@/components/MedicineBrowser";
+import { toast } from "sonner";
 
 const MedicalStore = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<string>("featured");
+  const [cartCount, setCartCount] = useState(0);
 
   const featuredProducts = [
     {
@@ -47,13 +51,103 @@ const MedicalStore = () => {
     },
   ];
 
-  // Dummy handlers for demonstration
-  const handleAddToCart = (product: typeof featuredProducts[0]) => {
-    alert(`Added ${product.name} to cart!`);
+  useEffect(() => {
+    // Initialize cart if it doesn't exist
+    if (!localStorage.getItem("currentCart")) {
+      localStorage.setItem("currentCart", JSON.stringify({
+        items: [],
+        subtotal: 0,
+        shipping: 0,
+        total: 0
+      }));
+    }
+    
+    // Update cart count
+    updateCartCount();
+  }, []);
+
+  const updateCartCount = () => {
+    const currentCart = JSON.parse(localStorage.getItem("currentCart") || "{}");
+    const count = currentCart.items ? currentCart.items.reduce((total, item) => total + item.quantity, 0) : 0;
+    setCartCount(count);
   };
 
-  const handleBookNow = (product: typeof featuredProducts[0]) => {
-    alert(`Booked ${product.name}!`);
+  const handleAddToCart = (product) => {
+    const currentCart = JSON.parse(localStorage.getItem("currentCart") || "{}");
+    
+    // Convert price from string to number, removing the ₹ symbol and commas
+    const priceNumber = Number(product.price.replace("₹", "").replace(",", ""));
+    
+    const existingItemIndex = currentCart.items ? 
+      currentCart.items.findIndex(item => item.id === product.id) : -1;
+
+    if (existingItemIndex >= 0) {
+      // Item already exists, increment quantity
+      currentCart.items[existingItemIndex].quantity += 1;
+    } else {
+      // Add new item
+      if (!currentCart.items) currentCart.items = [];
+      
+      currentCart.items.push({
+        id: product.id,
+        name: product.name,
+        brand: product.category,
+        price: priceNumber,
+        quantity: 1,
+        image: product.image
+      });
+    }
+
+    // Calculate totals
+    currentCart.subtotal = currentCart.items.reduce(
+      (total, item) => total + (item.price * item.quantity), 0);
+    currentCart.shipping = currentCart.subtotal > 0 ? 50 : 0; // ₹50 flat shipping
+    currentCart.total = currentCart.subtotal + currentCart.shipping;
+
+    // Save updated cart
+    localStorage.setItem("currentCart", JSON.stringify(currentCart));
+    
+    // Update cart count
+    updateCartCount();
+    
+    toast.success(`Added ${product.name} to cart!`);
+  };
+
+  const handleBookNow = (product) => {
+    // Clear the cart first
+    const freshCart = {
+      items: [],
+      subtotal: 0,
+      shipping: 0,
+      total: 0
+    };
+    
+    // Add this product to cart
+    const priceNumber = Number(product.price.replace("₹", "").replace(",", ""));
+    freshCart.items.push({
+      id: product.id,
+      name: product.name,
+      brand: product.category,
+      price: priceNumber,
+      quantity: 1,
+      image: product.image
+    });
+    
+    // Calculate totals
+    freshCart.subtotal = priceNumber;
+    freshCart.shipping = 50; // ₹50 flat shipping
+    freshCart.total = freshCart.subtotal + freshCart.shipping;
+    
+    // Save cart and navigate to payment
+    localStorage.setItem("currentCart", JSON.stringify(freshCart));
+    updateCartCount();
+    
+    // Navigate to payment page
+    navigate("/payment");
+  };
+
+  const handleViewCart = () => {
+    navigate("/payment");
   };
 
   return (
@@ -77,9 +171,9 @@ const MedicalStore = () => {
                 <Search className="h-4 w-4 mr-2" />
                 Search
               </Button>
-              <Button variant="ghost" className="relative">
+              <Button variant="ghost" className="relative" onClick={handleViewCart}>
                 <ShoppingCart className="h-5 w-5" />
-                <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0">0</Badge>
+                <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0">{cartCount}</Badge>
               </Button>
             </div>
           </div>
@@ -151,4 +245,3 @@ const MedicalStore = () => {
 };
 
 export default MedicalStore;
-
