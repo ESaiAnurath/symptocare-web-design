@@ -16,6 +16,7 @@ import DoctorsBySpecialty from "./pages/DoctorsBySpecialty";
 import Insurance from "./pages/Insurance";
 import Services from "./pages/Services";
 import Payment from "./pages/Payment";
+import Ayurveda from "./pages/Ayurveda";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/insurance" element={<Insurance />} />
           <Route path="/services" element={<Services />} />
           <Route path="/payment" element={<Payment />} />
+          <Route path="/ayurveda" element={<Ayurveda />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <AIChatbot />

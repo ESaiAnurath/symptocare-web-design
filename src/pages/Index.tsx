@@ -50,6 +50,55 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* SymptoCare Ayurveda Section */}
+      <section className="py-16 bg-gradient-to-br from-ayurveda-background to-ayurveda-muted">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <span className="text-3xl">🌿</span>
+              <h2 className="text-3xl font-bold text-ayurveda-primary">SymptoCare Ayurveda</h2>
+              <span className="text-3xl">🌿</span>
+            </div>
+            <p className="text-ayurveda-secondary-foreground max-w-3xl mx-auto text-lg leading-relaxed">
+              Explore the healing power of Ayurveda with SymptoCare Ayurveda – offering holistic remedies, 
+              natural therapies, and wellness guidance as a complementary approach to modern allopathy.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            {[
+              {
+                icon: "🌱",
+                title: "Natural Remedies",
+                description: "Time-tested herbal medicines and natural healing solutions for holistic wellness."
+              },
+              {
+                icon: "🧘‍♀️",
+                title: "Holistic Therapies",
+                description: "Panchakarma, yoga therapy, and meditation practices for mind-body balance."
+              },
+              {
+                icon: "💚",
+                title: "Wellness Guidance",
+                description: "Personalized lifestyle and dietary recommendations based on your Prakriti."
+              }
+            ].map((feature, index) => (
+              <div key={index} className="bg-ayurveda-card p-8 rounded-2xl shadow-lg border border-ayurveda-muted hover:shadow-xl transition-all duration-300">
+                <div className="text-4xl mb-4 text-center">{feature.icon}</div>
+                <h3 className="font-semibold text-xl mb-3 text-ayurveda-primary text-center">{feature.title}</h3>
+                <p className="text-ayurveda-secondary-foreground text-center leading-relaxed">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+          
+          <div className="text-center">
+            <button className="bg-ayurveda-primary hover:bg-ayurveda-accent text-ayurveda-primary-foreground hover:text-ayurveda-accent-foreground px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+              Explore Ayurveda Mode 🌿
+            </button>
+          </div>
+        </div>
+      </section>
       
       {/* Benefits Section */}
       <section className="py-16 bg-gradient-to-br from-[#F1F0FB] to-white">

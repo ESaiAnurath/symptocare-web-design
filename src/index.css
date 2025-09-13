@@ -34,6 +34,17 @@
 
     --radius: 0.5rem;
 
+    /* Ayurveda Theme Colors */
+    --ayurveda-primary: 120 38% 34%;
+    --ayurveda-primary-foreground: 0 0% 98%;
+    --ayurveda-secondary: 77 43% 91%;
+    --ayurveda-secondary-foreground: 120 38% 34%;
+    --ayurveda-accent: 45 93% 47%;
+    --ayurveda-accent-foreground: 120 38% 34%;
+    --ayurveda-background: 60 9% 98%;
+    --ayurveda-muted: 120 17% 89%;
+    --ayurveda-card: 120 50% 97%;
+
     --sidebar-background: 0 0% 98%;
 
     --sidebar-foreground: 240 5.3% 26.1%;

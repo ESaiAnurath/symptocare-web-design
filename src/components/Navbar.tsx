@@ -25,9 +25,10 @@ const Navbar = () => {
 
   const commonNavItems = [
     { title: 'Home', href: '/' },
-    { title: 'AI लक्षण विश्लेषक', href: '/analyzer' },
+    { title: 'AI Symptom Analyser', href: '/analyzer' },
     { title: 'Medical Store', href: '/store' },
     { title: 'Find Doctors', href: '/doctors' },
+    { title: 'SymptoCare Ayurveda', href: '/ayurveda', icon: '🌿' },
     { title: 'Services', href: '/services' },
     { title: 'Insurance', href: '/insurance' },
   ];
@@ -54,8 +55,11 @@ const Navbar = () => {
               <Link
                 key={item.title}
                 to={item.href}
-                className="text-gray-600 hover:text-primary transition-colors font-medium"
+                className={`text-gray-600 hover:text-primary transition-colors font-medium flex items-center gap-1 ${
+                  item.title === 'SymptoCare Ayurveda' ? 'text-ayurveda-primary hover:text-ayurveda-accent' : ''
+                }`}
               >
+                {item.icon && <span className="text-sm">{item.icon}</span>}
                 {item.title}
               </Link>
             ))}
@@ -113,8 +117,11 @@ const Navbar = () => {
                     <Link
                       key={item.title}
                       to={item.href}
-                      className="text-lg font-medium text-gray-600 hover:text-primary transition-colors"
+                      className={`text-lg font-medium text-gray-600 hover:text-primary transition-colors flex items-center gap-2 ${
+                        item.title === 'SymptoCare Ayurveda' ? 'text-ayurveda-primary hover:text-ayurveda-accent' : ''
+                      }`}
                     >
+                      {item.icon && <span>{item.icon}</span>}
                       {item.title}
                     </Link>
                   ))}

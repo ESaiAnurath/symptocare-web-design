@@ -56,6 +56,17 @@ export default {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
+        },
+        ayurveda: {
+          primary: 'hsl(var(--ayurveda-primary))',
+          'primary-foreground': 'hsl(var(--ayurveda-primary-foreground))',
+          secondary: 'hsl(var(--ayurveda-secondary))',
+          'secondary-foreground': 'hsl(var(--ayurveda-secondary-foreground))',
+          accent: 'hsl(var(--ayurveda-accent))',
+          'accent-foreground': 'hsl(var(--ayurveda-accent-foreground))',
+          background: 'hsl(var(--ayurveda-background))',
+          muted: 'hsl(var(--ayurveda-muted))',
+          card: 'hsl(var(--ayurveda-card))'
         }
       },
       borderRadius: {
