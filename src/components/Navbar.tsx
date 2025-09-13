@@ -40,12 +40,14 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="w-full bg-white/80 backdrop-blur-md fixed top-0 z-50 border-b">
+    <nav className="w-full bg-navy backdrop-blur-md fixed top-0 z-50 border-b border-mint/20 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
-            <Link to="/" className="flex items-center">
-              <span className="text-2xl font-bold text-primary">Sympto<span className="text-[#9b87f5]">Care</span></span>
+            <Link to="/" className="flex items-center group">
+              <span className="text-2xl font-bold font-poppins text-navy-foreground">
+                Sympto<span className="text-mint group-hover:text-mint/80 transition-colors">Care</span>
+              </span>
             </Link>
           </div>
 
@@ -55,12 +57,12 @@ const Navbar = () => {
               <Link
                 key={item.title}
                 to={item.href}
-                className={`text-gray-600 hover:text-primary transition-colors font-medium flex items-center gap-1 ${
-                  item.title === 'SymptoCare Ayurveda' ? 'text-ayurveda-primary hover:text-ayurveda-accent' : ''
+                className={`nav-link font-medium flex items-center gap-2 py-2 px-3 rounded-lg hover:bg-mint/10 ${
+                  item.title === 'SymptoCare Ayurveda' ? 'text-mint hover:text-mint/80' : ''
                 }`}
               >
-                {item.icon && <span className="text-sm">{item.icon}</span>}
-                {item.title}
+                {item.icon && <span className="text-lg">{item.icon}</span>}
+                <span className="font-inter">{item.title}</span>
               </Link>
             ))}
             
@@ -92,10 +94,10 @@ const Navbar = () => {
               ) : (
                 <div className="flex items-center space-x-4">
                   <Link to="/register">
-                    <Button variant="outline">Sign Up</Button>
+                    <Button variant="outline" className="border-mint text-mint hover:bg-mint hover:text-navy">Sign Up</Button>
                   </Link>
                   <Link to="/login">
-                    <Button className="bg-[#9b87f5] hover:bg-[#8b77e5]">Log In</Button>
+                    <Button className="btn-mint">Log In</Button>
                   </Link>
                 </div>
               )}
@@ -114,16 +116,16 @@ const Navbar = () => {
               <SheetContent>
                 <div className="flex flex-col space-y-4 mt-8">
                   {commonNavItems.map((item) => (
-                    <Link
-                      key={item.title}
-                      to={item.href}
-                      className={`text-lg font-medium text-gray-600 hover:text-primary transition-colors flex items-center gap-2 ${
-                        item.title === 'SymptoCare Ayurveda' ? 'text-ayurveda-primary hover:text-ayurveda-accent' : ''
-                      }`}
-                    >
-                      {item.icon && <span>{item.icon}</span>}
-                      {item.title}
-                    </Link>
+                      <Link
+                        key={item.title}
+                        to={item.href}
+                        className={`text-lg font-medium text-navy hover:text-mint transition-colors flex items-center gap-2 py-2 ${
+                          item.title === 'SymptoCare Ayurveda' ? 'text-ayurveda-primary hover:text-ayurveda-accent' : ''
+                        }`}
+                      >
+                        {item.icon && <span>{item.icon}</span>}
+                        {item.title}
+                      </Link>
                   ))}
                   
                   {isLoggedIn ? (
@@ -152,10 +154,10 @@ const Navbar = () => {
                   ) : (
                     <>
                       <Link to="/register">
-                        <Button variant="outline" className="w-full">Sign Up</Button>
+                        <Button variant="outline" className="w-full border-mint text-mint hover:bg-mint hover:text-navy">Sign Up</Button>
                       </Link>
                       <Link to="/login">
-                        <Button className="w-full bg-[#9b87f5] hover:bg-[#8b77e5]">Log In</Button>
+                        <Button className="w-full btn-mint">Log In</Button>
                       </Link>
                     </>
                   )}

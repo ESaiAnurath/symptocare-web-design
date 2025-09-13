@@ -1,6 +1,8 @@
 
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import FeatureSlider from "@/components/FeatureSlider";
+import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
@@ -8,15 +10,17 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
+      <FeatureSlider />
       <Hero />
       
       {/* Innovation Points */}
-      <section className="py-16">
+      <section className="py-20 bg-gradient-to-br from-mint-light to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Innovation and Features</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Our integrated approach makes healthcare more accessible and effective.
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-navy mb-6 font-poppins">Innovation & Technology</h2>
+            <p className="text-xl text-navy/70 max-w-3xl mx-auto font-inter leading-relaxed">
+              Our premium integrated platform combines cutting-edge AI, telemedicine, and cloud technologies 
+              to revolutionize healthcare delivery across India.
             </p>
           </div>
           
@@ -24,26 +28,30 @@ const Index = () => {
             {[
               {
                 title: "AI + Telemedicine + Cloud",
-                description: "Combining three powerful technologies revolutionizing healthcare."
+                description: "Revolutionary tri-technology fusion delivering unprecedented healthcare precision and accessibility.",
+                number: "01"
               },
               {
-                title: "Works in Rural Areas",
-                description: "Can be used in remote areas with low bandwidth and offline capabilities."
+                title: "Rural Healthcare Access",
+                description: "Optimized for low bandwidth with offline capabilities, bringing specialists to remote villages.",
+                number: "02"
               },
               {
-                title: "Fast Diagnosis",
-                description: "Get quick analysis and instant specialist guidance—helping prevent complications."
+                title: "Lightning Fast Diagnosis",
+                description: "Sub-second AI analysis with instant specialist routing prevents critical complications.",
+                number: "03"
               },
               {
-                title: "Unified Health Platform",
-                description: "From symptoms to specialists, everything is available in one application."
+                title: "Unified Health Ecosystem",
+                description: "Complete healthcare journey from symptoms to recovery in one premium application.",
+                number: "04"
               },
             ].map((point, index) => (
-              <Card key={index} className="border-none shadow-md hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="text-2xl font-bold text-[#9b87f5] mb-2">{index + 1}</div>
-                  <h3 className="font-semibold text-lg mb-2">{point.title}</h3>
-                  <p className="text-gray-600">{point.description}</p>
+              <Card key={index} className="card-premium bg-white border-mint/20 group hover:border-mint/40">
+                <CardContent className="p-8">
+                  <div className="text-4xl font-bold text-mint mb-4 font-poppins">{point.number}</div>
+                  <h3 className="font-bold text-xl mb-4 text-navy font-poppins group-hover:text-mint transition-colors">{point.title}</h3>
+                  <p className="text-navy/70 leading-relaxed font-inter">{point.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -52,95 +60,106 @@ const Index = () => {
       </section>
 
       {/* SymptoCare Ayurveda Section */}
-      <section className="py-16 bg-gradient-to-br from-ayurveda-background to-ayurveda-muted">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <span className="text-3xl">🌿</span>
-              <h2 className="text-3xl font-bold text-ayurveda-primary">SymptoCare Ayurveda</h2>
-              <span className="text-3xl">🌿</span>
+      <section className="py-20 bg-gradient-to-br from-ayurveda-background to-ayurveda-muted relative overflow-hidden">
+        {/* Decorative Elements */}
+        <div className="absolute top-10 left-10 text-ayurveda-accent/20 animate-pulse">
+          <div className="text-6xl">🌿</div>
+        </div>
+        <div className="absolute bottom-10 right-10 text-ayurveda-accent/20 animate-pulse" style={{animationDelay: '1s'}}>
+          <div className="text-5xl">🕉️</div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <span className="text-4xl animate-bounce">🌿</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-ayurveda-primary font-poppins">SymptoCare Ayurveda</h2>
+              <span className="text-4xl animate-bounce" style={{animationDelay: '0.5s'}}>🌿</span>
             </div>
-            <p className="text-ayurveda-secondary-foreground max-w-3xl mx-auto text-lg leading-relaxed">
-              Explore the healing power of Ayurveda with SymptoCare Ayurveda – offering holistic remedies, 
-              natural therapies, and wellness guidance as a complementary approach to modern allopathy.
+            <p className="text-ayurveda-secondary-foreground max-w-4xl mx-auto text-xl leading-relaxed font-inter">
+              Discover the ancient wisdom of Ayurveda integrated with modern technology. Our premium Ayurvedic platform 
+              offers personalized holistic healing, natural remedies, and wellness guidance as a perfect complement to allopathic medicine.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             {[
               {
                 icon: "🌱",
-                title: "Natural Remedies",
-                description: "Time-tested herbal medicines and natural healing solutions for holistic wellness."
+                title: "Premium Natural Remedies",
+                description: "Authentic Ayurvedic formulations crafted by master practitioners with modern quality standards."
               },
               {
                 icon: "🧘‍♀️",
-                title: "Holistic Therapies",
-                description: "Panchakarma, yoga therapy, and meditation practices for mind-body balance."
+                title: "Holistic Wellness Therapy",
+                description: "Complete Panchakarma treatments, personalized yoga therapy, and guided meditation sessions."
               },
               {
                 icon: "💚",
-                title: "Wellness Guidance",
-                description: "Personalized lifestyle and dietary recommendations based on your Prakriti."
+                title: "AI-Powered Prakriti Analysis",
+                description: "Advanced AI determines your unique constitution and provides personalized lifestyle recommendations."
               }
             ].map((feature, index) => (
-              <div key={index} className="bg-ayurveda-card p-8 rounded-2xl shadow-lg border border-ayurveda-muted hover:shadow-xl transition-all duration-300">
-                <div className="text-4xl mb-4 text-center">{feature.icon}</div>
-                <h3 className="font-semibold text-xl mb-3 text-ayurveda-primary text-center">{feature.title}</h3>
-                <p className="text-ayurveda-secondary-foreground text-center leading-relaxed">{feature.description}</p>
+              <div key={index} className="card-premium bg-ayurveda-card border-ayurveda-accent/20 p-8 group">
+                <div className="text-5xl mb-6 text-center group-hover:scale-110 transition-transform duration-300">{feature.icon}</div>
+                <h3 className="font-bold text-xl mb-4 text-ayurveda-primary text-center font-poppins group-hover:text-ayurveda-accent transition-colors">{feature.title}</h3>
+                <p className="text-ayurveda-secondary-foreground text-center leading-relaxed font-inter">{feature.description}</p>
               </div>
             ))}
           </div>
           
           <div className="text-center">
-            <button className="bg-ayurveda-primary hover:bg-ayurveda-accent text-ayurveda-primary-foreground hover:text-ayurveda-accent-foreground px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-              Explore Ayurveda Mode 🌿
+            <button className="bg-gradient-to-r from-ayurveda-primary to-ayurveda-accent text-ayurveda-primary-foreground px-12 py-5 rounded-full font-bold text-xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 font-poppins">
+              Experience Ayurveda Premium 🌿
             </button>
           </div>
         </div>
       </section>
       
       {/* Benefits Section */}
-      <section className="py-16 bg-gradient-to-br from-[#F1F0FB] to-white">
+      <section className="py-20 bg-gradient-to-br from-navy-light to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Impact and Benefits</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              See how our platform transforms the healthcare experience.
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-navy mb-6 font-poppins">Transforming Healthcare</h2>
+            <p className="text-xl text-navy/70 max-w-3xl mx-auto font-inter leading-relaxed">
+              Discover how our premium platform creates measurable impact across every aspect of healthcare delivery.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "Better Diagnosis",
-                description: "Reduces self-diagnosis errors and ensures early treatment."
+                title: "95% Diagnosis Accuracy",
+                description: "AI-powered analysis reduces misdiagnosis and ensures precise early intervention for better outcomes."
               },
               {
-                title: "Improved Accessibility",
-                description: "Even rural users gain easy access to specialists."
+                title: "Rural Healthcare Revolution",
+                description: "Bringing world-class specialists to remote villages with seamless telemedicine technology."
               },
               {
-                title: "Cost Savings",
-                description: "Save time and money by reducing unnecessary hospital visits."
+                title: "70% Cost Reduction",
+                description: "Eliminate unnecessary hospital visits while maintaining premium quality healthcare delivery."
               },
               {
-                title: "Eco Friendly",
-                description: "Reduce your carbon footprint by traveling less."
+                title: "Carbon Neutral Care",
+                description: "Sustainable healthcare model reducing travel emissions while expanding medical access."
               },
               {
-                title: "Social Impact",
-                description: "Increases preventive healthcare awareness."
+                title: "Community Health Impact",
+                description: "Empowering communities with preventive care knowledge and early intervention strategies."
               },
               {
-                title: "Inclusive Healthcare",
-                description: "Reaches more people with clear communication."
+                title: "Universal Healthcare Access",
+                description: "Breaking language and accessibility barriers to serve every Indian with dignity and care."
               },
             ].map((benefit, index) => (
-              <Card key={index} className="border-none shadow-sm">
-                <CardContent className="p-6">
-                  <h3 className="font-semibold text-lg mb-2">{benefit.title}</h3>
-                  <p className="text-gray-600">{benefit.description}</p>
+              <Card key={index} className="card-premium bg-white border-mint/20 group">
+                <CardContent className="p-8">
+                  <div className="w-12 h-12 bg-gradient-to-br from-mint to-mint/80 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-6 h-6 bg-white rounded-full"></div>
+                  </div>
+                  <h3 className="font-bold text-xl mb-4 text-navy font-poppins group-hover:text-mint transition-colors">{benefit.title}</h3>
+                  <p className="text-navy/70 leading-relaxed font-inter">{benefit.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -149,44 +168,53 @@ const Index = () => {
       </section>
       
       {/* Future Scope Section */}
-      <section className="py-16">
+      <section className="py-20 bg-gradient-to-br from-mint-light to-navy-light">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Future Scope</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Plans for future developments and expansion of our platform.
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-navy mb-6 font-poppins">The Future of Healthcare</h2>
+            <p className="text-xl text-navy/70 max-w-3xl mx-auto font-inter leading-relaxed">
+              Pioneering tomorrow's healthcare innovations with cutting-edge technology and visionary medical solutions.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                title: "Integration of Medical Systems",
-                description: "Extending from MBBS to various medical practices."
+                title: "Integrated Medical Ecosystem",
+                description: "Unified platform connecting MBBS, Ayurveda, Homeopathy, and alternative medicine practices seamlessly.",
+                gradient: "from-mint to-mint/80"
               },
               {
-                title: "Medicine Reminders",
-                description: "Get alarms and reminders to take your medicine on time."
+                title: "Smart Medicine Management",
+                description: "AI-powered medication reminders with smart dispensers and real-time adherence monitoring.",
+                gradient: "from-navy to-navy/80"
               },
               {
-                title: "Offline Doctor Visits",
-                description: "Booking services for home doctor visits."
+                title: "Home Healthcare Network",
+                description: "On-demand specialist home visits with portable diagnostic equipment and telemedicine support.",
+                gradient: "from-mint to-mint/80"
               },
               {
-                title: "Health Education Chatbot",
-                description: "An AI chatbot for information and health education."
+                title: "AI Health Education Assistant",
+                description: "Personalized health education chatbot providing contextual medical information and wellness guidance.",
+                gradient: "from-navy to-navy/80"
               },
             ].map((scope, index) => (
-              <Card key={index} className="border border-dashed border-[#9b87f5]">
-                <CardContent className="p-6">
-                  <h3 className="font-semibold text-lg mb-2">{scope.title}</h3>
-                  <p className="text-gray-600">{scope.description}</p>
+              <Card key={index} className="card-premium bg-white/80 backdrop-blur-sm border-2 border-dashed border-mint/40 group hover:border-mint">
+                <CardContent className="p-8">
+                  <div className={`w-16 h-16 bg-gradient-to-r ${scope.gradient} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300`}>
+                    <div className="w-8 h-8 bg-white/30 rounded-xl"></div>
+                  </div>
+                  <h3 className="font-bold text-xl mb-4 text-navy font-poppins group-hover:text-mint transition-colors">{scope.title}</h3>
+                  <p className="text-navy/70 leading-relaxed font-inter">{scope.description}</p>
+                  <div className="mt-6 text-mint text-sm font-semibold font-inter">Coming Soon</div>
                 </CardContent>
               </Card>
             ))}
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };

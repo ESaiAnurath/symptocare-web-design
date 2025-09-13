@@ -7,100 +7,108 @@ const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-[#D3E4FD] to-white">
-      <div className="absolute inset-0 bg-white/40" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-      }} />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h1 className="text-5xl md:text-6xl font-bold font-poppins mb-6 tracking-tight">
-              Your Health,<br />
-              <span className="text-[#9b87f5]">Our Care.</span>
+    <>
+      <div className="relative min-h-[85vh] flex items-center overflow-hidden">
+        {/* Animated Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy/95 to-mint/20">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(152,255,152,0.1),transparent)] animate-pulse"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(152,255,152,0.05),transparent)] animate-pulse delay-1000"></div>
+        </div>
+        
+        {/* Floating Medical Icons */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 text-mint/20 animate-bounce" style={{animationDelay: '1s'}}>
+            <Brain className="h-8 w-8" />
+          </div>
+          <div className="absolute top-40 right-20 text-mint/20 animate-bounce" style={{animationDelay: '2s'}}>
+            <Activity className="h-6 w-6" />
+          </div>
+          <div className="absolute bottom-40 left-20 text-mint/20 animate-bounce" style={{animationDelay: '0.5s'}}>
+            <CloudCog className="h-7 w-7" />
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="text-center max-w-4xl mx-auto">
+            <h1 className="text-5xl md:text-7xl font-bold font-poppins mb-8 tracking-tight">
+              <span className="text-navy-foreground">Your Health,</span>
+              <br />
+              <span className="text-gradient bg-gradient-to-r from-mint to-mint/80 bg-clip-text text-transparent">Our Premium Care.</span>
             </h1>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Experience AI-powered healthcare. Get instant symptom analysis, connect with specialists, and access quality medical supplies - all in one place.
+            <p className="text-xl md:text-2xl text-navy-foreground/80 mb-12 leading-relaxed max-w-3xl mx-auto font-inter">
+              Experience next-generation AI-powered healthcare with premium design. Get instant symptom analysis, 
+              connect with top specialists, and access quality medical supplies - all in one revolutionary platform.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
               <Button 
                 size="lg" 
-                className="bg-[#9b87f5] hover:bg-[#8b77e5] text-lg h-12"
+                className="btn-mint text-xl h-16 px-12 rounded-full font-semibold shadow-xl"
                 onClick={() => navigate('/analyzer')}
               >
-                Get Instant Symptom Analysis
-                <ArrowRight className="ml-2 h-5 w-5" />
+                Get AI Analysis Now
+                <ArrowRight className="ml-3 h-6 w-6" />
               </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="text-lg h-12"
+                className="text-xl h-16 px-12 rounded-full font-semibold border-2 border-mint text-mint hover:bg-mint hover:text-navy shadow-xl"
                 onClick={() => navigate('/doctors')}
               >
-                Find a Doctor
+                Find Specialists
               </Button>
             </div>
-            <div className="mt-12 grid grid-cols-3 gap-8">
+            
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 max-w-2xl mx-auto">
               {[
-                ['10L+', 'Active Users'],
-                ['500+', 'Specialists'],
-                ['24/7', 'Support'],
-              ].map(([stat, label]) => (
-                <div key={label}>
-                  <div className="text-2xl font-bold text-[#9b87f5]">{stat}</div>
-                  <div className="text-gray-600">{label}</div>
+                ['10L+', 'Active Users', 'Trusted by millions'],
+                ['500+', 'Top Specialists', 'Expert doctors online'],
+                ['24/7', 'Premium Support', 'Always here for you'],
+              ].map(([stat, label, desc]) => (
+                <div key={label} className="text-center">
+                  <div className="text-4xl md:text-5xl font-bold text-mint mb-2 font-poppins">{stat}</div>
+                  <div className="text-navy-foreground font-semibold text-lg mb-1">{label}</div>
+                  <div className="text-navy-foreground/70 text-sm font-inter">{desc}</div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="relative hidden md:block">
-            <div className="absolute w-full h-full bg-gradient-to-br from-[#9b87f5]/30 to-transparent rounded-3xl transform rotate-3"></div>
-            <img
-              src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=2000"
-              alt="Indian doctor with digital tablet"
-              className="relative z-10 rounded-2xl shadow-2xl h-[600px] w-full object-cover"
-            />
-            
-            <div className="absolute top-4 left-4 bg-white p-4 rounded-xl shadow-lg z-20 flex items-center">
-              <Brain className="text-[#9b87f5] mr-2" />
-              <span className="font-medium">AI Symptom Analysis</span>
-            </div>
-            
-            <div className="absolute bottom-4 right-4 bg-white p-4 rounded-xl shadow-lg z-20 flex items-center">
-              <Activity className="text-[#9b87f5] mr-2" />
-              <span className="font-medium">Expert Consultation</span>
-            </div>
-          </div>
-        </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-16">
-          {[
-            {
-              icon: Brain,
-              title: "AI Symptom Analysis",
-              description: "Get instant symptom analysis and understand potential outcomes"
-            },
-            {
-              icon: Activity,
-              title: "Connect with Specialists",
-              description: "Connect with the most qualified specialists based on your symptoms"
-            },
-            {
-              icon: CloudCog,
-              title: "Secure Health Records",
-              description: "Store your health records securely in the cloud"
-            }
-          ].map((feature, index) => (
-            <div key={index} className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-              <div className="rounded-full w-12 h-12 bg-[#F1F0FB] flex items-center justify-center mb-4">
-                <feature.icon className="h-6 w-6 text-[#9b87f5]" />
-              </div>
-              <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
-              <p className="text-gray-600 text-sm">{feature.description}</p>
-            </div>
-          ))}
         </div>
       </div>
-    </div>
+      
+      {/* Features Section */}
+      <section className="py-20 bg-gradient-to-br from-navy/5 to-mint/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {[
+              {
+                icon: Brain,
+                title: "AI Symptom Analysis",
+                description: "Advanced AI algorithms provide instant, accurate symptom analysis and health insights"
+              },
+              {
+                icon: Activity,
+                title: "Premium Specialists",
+                description: "Connect with India's top-rated doctors and specialists for expert consultation"
+              },
+              {
+                icon: CloudCog,
+                title: "Secure Health Vault",
+                description: "Your health records stored with military-grade security in our premium cloud"
+              }
+            ].map((feature, index) => (
+              <div key={index} className="card-premium bg-white border-mint/20 p-8 group">
+                <div className="rounded-full w-16 h-16 bg-mint/20 flex items-center justify-center mb-6 group-hover:bg-mint/30 transition-colors duration-300">
+                  <feature.icon className="h-8 w-8 text-mint" />
+                </div>
+                <h3 className="font-bold text-xl mb-4 text-navy font-poppins">{feature.title}</h3>
+                <p className="text-navy/80 leading-relaxed font-inter">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 

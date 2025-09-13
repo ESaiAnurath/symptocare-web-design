@@ -21,6 +21,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
         poppins: ['Poppins', 'sans-serif'],
       },
       colors: {
@@ -56,6 +57,16 @@ export default {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
+        },
+        navy: {
+          DEFAULT: 'hsl(var(--navy))',
+          foreground: 'hsl(var(--navy-foreground))',
+          light: 'hsl(var(--navy-light))'
+        },
+        mint: {
+          DEFAULT: 'hsl(var(--mint))',
+          foreground: 'hsl(var(--mint-foreground))',
+          light: 'hsl(var(--mint-light))'
         },
         ayurveda: {
           primary: 'hsl(var(--ayurveda-primary))',
